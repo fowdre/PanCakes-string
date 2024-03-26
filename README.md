@@ -25,6 +25,8 @@ pan\<C\>akes\<🥞\> string is an implementation of a heap-allocated string.
 - [ ] pkstr_starts_with() | returns true if the string starts with the given string
 - [ ] pkstr_ends_with() | returns true if the string ends with the given string
 - [ ] pkstr_contains() | returns true if the string contains the given string
+- [ ] pkstr_lsearch() | searches for the given string in the string and returns the index, starting from the left
+- [ ] pkstr_rsearch() | searches for the given string in the string and returns the index, starting from the right
 - [ ] pkstr_equals() | returns true if the string is equal to the given string
 - [ ] pkstr_split() | splits the string using the given bytes
 
