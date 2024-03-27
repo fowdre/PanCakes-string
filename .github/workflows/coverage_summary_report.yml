@@ -20,9 +20,9 @@ jobs:
         run: |
           make coverage
 
-  run:
-    runs-on: ubuntu-latest
-    steps:
+  # run:
+    # runs-on: ubuntu-latest
+    # steps:
       - name: generate code coverage summary report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
