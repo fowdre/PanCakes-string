@@ -33,4 +33,6 @@ jobs:
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: assets
-          build_dir: coverage
+          build_dir: build/coverage/html
+          commit_message: "Update code coverage summary report"
+          token: ${{ secrets.GITHUB_TOKEN }}
