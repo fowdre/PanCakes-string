@@ -52,7 +52,10 @@ UNITY_INCLUDES	=	-I./unity
 
 COVERAGE_EXCLUDE_DIRS	=	unity
 COVERAGE_COMPILE_FLAGS	=	-fprofile-arcs -ftest-coverage
-GCOVR_FLAGS				=	--exclude unity --html-details $(COVERAGE_DIR)html/output.html
+GCOVR_FLAGS				=	--exclude unity	\
+							-j	\
+							--html-theme github.dark-green	\
+							--html-details $(COVERAGE_DIR)html/output.html
 
 all: tests_run
 	@:
