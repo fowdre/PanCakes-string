@@ -6,13 +6,22 @@ on:
 run-name: pan<C>akes<🥞> string coverage summary report
 
 jobs:
+  build_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: make tests_run
+        run: |
+          make tests_run
+
   run:
     runs-on: ubuntu-latest
     steps:
       - name: generate code coverage summary report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          filename: coverage.cobertura.xml
+          filename: build/
       - name: push code coverage summary report to the assets branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
