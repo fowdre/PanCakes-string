@@ -26,6 +26,7 @@ endef
 BUILD_DIR		=	build/
 OBJECTS_DIR		=	$(BUILD_DIR)obj/
 RES_DIR			=	$(BUILD_DIR)res/
+COVERAGE_DIR	=	$(BUILD_DIR)coverage/
 PROJECT_DIR		=	project/
 SRC_DIR			=	$(PROJECT_DIR)src/
 
@@ -49,12 +50,16 @@ TEST_SRC		=	test/TestAdder.c $(TEST_REQUIRED)
 UNITY_SRC		=	unity/unity.c
 UNITY_INCLUDES	=	-I./unity
 
+COVERAGE_EXCLUDE_DIRS	=	unity
+COVERAGE_COMPILE_FLAGS	=	-fprofile-arcs -ftest-coverage
+GCOVR_FLAGS				=	--exclude unity --html-details $(COVERAGE_DIR)html/output.html
+
 all: tests_run
 	@:
 
 tests_run: $(BUILD_DIR) $(RES_DIR)
-	@gcc $(UNITY_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) -o $(BUILD_DIR)test_exec $(CFLAGS)
-	@./$(BUILD_DIR)test_exec > $(RES_DIR)trace.txt || true
+	@gcc $(CFLAGS) $(COVERAGE_COMPILE_FLAGS) $(UNITY_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) -o $(COVERAGE_DIR)test_exec
+	@./$(COVERAGE_DIR)test_exec > $(RES_DIR)trace.txt || true
 
 	@$(ECHO) "\nIGNORED: `grep -s IGNORE: $(RES_DIR)trace.txt | wc -l`"
 	@$(ECHO) `grep -s IGNORE $(RES_DIR)trace.txt`
@@ -62,6 +67,11 @@ tests_run: $(BUILD_DIR) $(RES_DIR)
 	@$(ECHO) `grep -s PASS $(RES_DIR)trace.txt`
 	@$(ECHO) "\nFAILED: `grep -s FAIL: $(RES_DIR)trace.txt | wc -l`"
 	@$(ECHO) `grep -s FAIL $(RES_DIR)trace.txt`
+
+coverage: $(COVERAGE_DIR) tests_run
+	@echo "test"
+	@mkdir -p $(COVERAGE_DIR)html
+	@gcovr $(GCOVR_FLAGS)
 
 main: $(OBJ)
 	@gcc $(OBJ) -o $(NAME) $(CFLAGS)
@@ -85,6 +95,9 @@ $(OBJECTS_DIR):
 $(RES_DIR):
 	$(MKDIR) $(RES_DIR)
 
+$(COVERAGE_DIR):
+	$(MKDIR) $(COVERAGE_DIR)
+
 clean:
 	@$(RM) -rf $(BUILD_DIR)
 	@$(ECHO) $(RED_C)$(DIM_T)"[clean]  "$(DEFAULT) $(BOLD_T)$(RED_C)		\
@@ -94,4 +107,4 @@ re:	clean all
 
 .PRECIOUS: $(OBJ)
 
-.PHONY: all test debug clean fclean re
+.PHONY: all tests_run coverage debug clean fclean re
