@@ -324,6 +324,8 @@ void UnityPrintMask(const UNITY_UINT mask, const UNITY_UINT number)
 
 /*-----------------------------------------------*/
 #ifndef UNITY_EXCLUDE_FLOAT_PRINT
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wfloat-equal"
 /*
  * This function prints a floating-point value in a format similar to
  * printf("%.7g") on a single-precision machine or printf("%.9g") on a
@@ -489,6 +491,7 @@ void UnityPrintFloat(const UNITY_DOUBLE input_number)
         }
     }
 }
+#pragma GCC diagnostic pop
 #endif /* ! UNITY_EXCLUDE_FLOAT_PRINT */
 
 /*-----------------------------------------------*/
