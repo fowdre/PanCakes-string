@@ -1,98 +1,97 @@
-ifeq ($(OS),Windows_NT)
-  ifeq ($(shell uname -s),) # not in a bash-like shell
-	CLEANUP = del /F /Q
-	MKDIR = mkdir
-  else # in a bash-like shell, like msys
-	CLEANUP = rm -f
-	MKDIR = mkdir -p
-  endif
-	TARGET_EXTENSION=exe
+ifeq ($(shell uname),Linux)
+    ECHO := echo -e
+else ifeq ($(OS),Windows_NT)
+    ECHO := echo.
 else
-	CLEANUP = rm -f
-	MKDIR = mkdir -p
-	TARGET_EXTENSION=out
+    ECHO := echo
 endif
 
-.PHONY: clean
-.PHONY: test
+MKDIR	=	mkdir -p
 
-# ------------------------------- [ PROJECT ] ------------------------------- #
+DEFAULT 	=	"\033[0m"
+BOLD_T  	=	"\033[1m"
+DIM_T   	=	"\033[2m"
+UNDLN_T 	=	"\033[4m"
+RED_C   	=	"\033[31m"
+GREEN_C 	=	"\033[32m"
+LIGHT_RED	=	"\033[91m"
+LIGHT_GREEN	=	"\033[92m"
+LIGHT_CYAN	=	"\033[96m"
+define success_message
+	@$(ECHO) $(BOLD_T)$(GREEN_C)"\n[✔] COMPILED:" $(DEFAULT)$(LIGHT_GREEN) \
+		"$(1)\n"$(DEFAULT) || $(ECHO) $(BOLD_T)$(RED_C)"[✘] \
+		"$(UNDLN_T)"BUILD FAILED:" $(LIGHT_RED) "$(1)\n"$(DEFAULT)
+endef
 
-PROJECT_INCLUDES	=	-Iproject/include/
-PROJECT_PATHS		=	project/src/
+BUILD_DIR		=	build/
+OBJECTS_DIR		=	$(BUILD_DIR)obj/
+RES_DIR			=	$(BUILD_DIR)res/
+PROJECT_DIR		=	project/
+SRC_DIR			=	$(PROJECT_DIR)src/
 
-CFLAGS	+=	-Wall -Wextra -Wfloat-equal -Wundef -Wcast-align -Wshadow -Wlogical-op -Wredundant-decls -pedantic -fanalyzer
+SRC_RAW		= 	main.c
+SRC 		= 	$(addprefix $(SRC_DIR), $(SRC_RAW))
 
-# --------------------------------------------------------------------------- #
+OBJ 		= 	$(patsubst $(SRC_DIR)%.c, $(OBJECTS_DIR)%.o, $(SRC))
 
-PATHU	=	unity/
-PATHS	=	$(PROJECT_PATHS)
-PATHT	=	test/
-PATHB	=	build/
-PATHD	=	build/depends/
-PATHO	=	build/objs/
-PATHR	=	build/results/
+OBJ-CRIT	=	$(SRC-CRIT:.c=.o)
 
-BUILD_PATHS = $(PATHB) $(PATHD) $(PATHO) $(PATHR)
+NAME		=	a.out
 
-SRCT = $(wildcard $(PATHT)*.c)
+INCLUDES	=	-I./$(PROJECT_DIR)include
 
-COMPILE=gcc -c
-LINK=gcc
-DEPEND=gcc -MM -MG -MF
-CFLAGS=-I. -I$(PATHU) -I$(PATHS) $(PROJECT_INCLUDES) -DUNITY_OUTPUT_COLOR -DTEST
+CFLAGS  	+=	-Wall -Wextra -Wfloat-equal -Wundef -Wcast-align -Wshadow	  \
+				-Wlogical-op -Wredundant-decls -I./include -fno-builtin -g3
 
-RESULTS = $(patsubst $(PATHT)Test%.c,$(PATHR)Test%.txt,$(SRCT) )
+TEST_REQUIRED	=	$(SRC_DIR)Adder.c
+TEST_SRC		=	test/TestAdder.c $(TEST_REQUIRED)
 
-PASSED = `grep -s PASS $(PATHR)*.txt`
-FAIL = `grep -s FAIL $(PATHR)*.txt`
-IGNORE = `grep -s IGNORE $(PATHR)*.txt`
+UNITY_SRC		=	unity/unity.c
+UNITY_INCLUDES	=	-I./unity
 
-test: $(BUILD_PATHS) $(RESULTS)
-	@echo -e "-----------------------\nIGNORES:\n-----------------------"
-	@echo -e "$(IGNORE)"
-	@echo -e "-----------------------\nFAILURES:\n-----------------------"
-	@echo -e "$(FAIL)"
-	@echo -e "-----------------------\nPASSED:\n-----------------------"
-	@echo -e "$(PASSED)"
-	@echo -e "\nDONE"
+all: tests_run
+	@:
 
-$(PATHR)%.txt: $(PATHB)%.$(TARGET_EXTENSION)
-	-./$< > $@ 2>&1
+tests_run: $(BUILD_DIR) $(RES_DIR)
+	@gcc $(UNITY_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) -o $(BUILD_DIR)test_exec $(CFLAGS)
+	@./$(BUILD_DIR)test_exec > $(RES_DIR)trace.txt || true
 
-$(PATHB)Test%.$(TARGET_EXTENSION): $(PATHO)Test%.o $(PATHO)%.o $(PATHO)unity.o #$(PATHD)Test%.d
-	$(LINK) -o $@ $^
+	@$(ECHO) "\nIGNORED: `grep -s IGNORE: $(RES_DIR)trace.txt | wc -l`"
+	@$(ECHO) `grep -s IGNORE $(RES_DIR)trace.txt`
+	@$(ECHO) "\nPASSED: `grep -s PASS: $(RES_DIR)trace.txt | wc -l`"
+	@$(ECHO) `grep -s PASS $(RES_DIR)trace.txt`
+	@$(ECHO) "\nFAILED: `grep -s FAIL: $(RES_DIR)trace.txt | wc -l`"
+	@$(ECHO) `grep -s FAIL $(RES_DIR)trace.txt`
 
-$(PATHO)%.o:: $(PATHT)%.c
-	$(COMPILE) $(CFLAGS) $< -o $@
+main: $(OBJ)
+	@gcc $(OBJ) -o $(NAME) $(CFLAGS)
+	$(call success_message, $(NAME))
 
-$(PATHO)%.o:: $(PATHS)%.c
-	$(COMPILE) $(CFLAGS) $< -o $@
+debug:
+	@gcc $(SRC) -o $(NAME) $(CFLAGS) -g
+	$(call success_message, $(NAME))
 
-$(PATHO)%.o:: $(PATHU)%.c $(PATHU)%.h
-	$(COMPILE) $(CFLAGS) $< -o $@
+$(OBJECTS_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $< && $(ECHO) $(GREEN_C)[OK]  	\
+		$(BOLD_T) $< $(DEFAULT) || $(ECHO) $(RED_C)[KO]$(BOLD_T) $< $(DEFAULT)
 
-$(PATHD)%.d:: $(PATHT)%.c
-	$(DEPEND) $@ $<
+$(BUILD_DIR):
+	$(MKDIR) $(BUILD_DIR)
 
-$(PATHB):
-	$(MKDIR) $(PATHB)
+$(OBJECTS_DIR):
+	$(MKDIR) $(OBJECTS_DIR)
 
-$(PATHD):
-	$(MKDIR) $(PATHD)
-
-$(PATHO):
-	$(MKDIR) $(PATHO)
-
-$(PATHR):
-	$(MKDIR) $(PATHR)
+$(RES_DIR):
+	$(MKDIR) $(RES_DIR)
 
 clean:
-	$(CLEANUP) $(PATHO)*.o
-	$(CLEANUP) $(PATHB)*.$(TARGET_EXTENSION)
-	$(CLEANUP) $(PATHR)*.txt
+	@$(RM) -rf $(BUILD_DIR)
+	@$(ECHO) $(RED_C)$(DIM_T)"[clean]  "$(DEFAULT) $(BOLD_T)$(RED_C)		\
+		"DELETED: "$(DEFAULT) $(LIGHT_RED)"$(BUILD_DIR)"$(DEFAULT)
 
-.PRECIOUS: $(PATHB)Test%.$(TARGET_EXTENSION)
-.PRECIOUS: $(PATHD)%.d
-.PRECIOUS: $(PATHO)%.o
-.PRECIOUS: $(PATHR)%.txt
+re:	clean all
+
+.PRECIOUS: $(OBJ)
+
+.PHONY: all test debug clean fclean re
