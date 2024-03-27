@@ -25,7 +25,7 @@ endef
 
 BUILD_DIR		=	build/
 OBJECTS_DIR		=	$(BUILD_DIR)obj/
-RES_DIR			=	$(BUILD_DIR)res/
+RES_DIR			=	$(BUILD_DIR)result/
 COVERAGE_DIR	=	$(BUILD_DIR)coverage/
 PROJECT_DIR		=	project/
 SRC_DIR			=	$(PROJECT_DIR)src/
@@ -73,11 +73,17 @@ tests_run: $(BUILD_DIR) $(RES_DIR)
 	@$(ECHO) "\nFAILED: `grep -s FAIL $(RES_DIR)trace.txt | wc -l`"
 	@$(ECHO) `grep -s FAIL $(RES_DIR)trace.txt`
 
-coverage: $(COVERAGE_DIR)
+coverage_html: $(COVERAGE_DIR)
 	@gcc $(CFLAGS) $(COVERAGE_COMPILE_FLAGS) $(UNITY_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) -o $(COVERAGE_DIR)test_exec
 	@./$(COVERAGE_DIR)test_exec > $(COVERAGE_DIR)trace.txt || true
 	@mkdir -p $(COVERAGE_DIR)html
 	@gcovr $(GCOVR_FLAGS)
+
+coverage_xml: $(COVERAGE_DIR)
+	@gcc $(CFLAGS) $(COVERAGE_COMPILE_FLAGS) $(UNITY_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) -o $(COVERAGE_DIR)test_exec
+	@./$(COVERAGE_DIR)test_exec > $(COVERAGE_DIR)trace.txt || true
+	@mkdir -p $(COVERAGE_DIR)xml
+	@gcovr -r . --cobertura --output $(COVERAGE_DIR)xml/coverage.xml
 
 main: $(OBJ)
 	@gcc $(OBJ) -o $(NAME) $(CFLAGS)
