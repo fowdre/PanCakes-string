@@ -28,11 +28,11 @@ jobs:
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
           filename: build/coverage/xml/*.xml
-      
-      - name: push code coverage summary report to the assets branch
-        uses: crazy-max/ghaction-github-pages@v3.1.0
-        with:
-          target_branch: assets
-          build_dir: build/coverage/html
-          commit_message: "Update code coverage summary report"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          badge: true
+          fail_below_min: true
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: true
+          indicators: true
+          output: both
+          thresholds: "60 80"
