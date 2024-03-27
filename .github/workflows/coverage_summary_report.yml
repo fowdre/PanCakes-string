@@ -11,9 +11,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: make tests_run
+      - name: make coverage
         run: |
-          make tests_run
+          make coverage
 
   run:
     runs-on: ubuntu-latest
