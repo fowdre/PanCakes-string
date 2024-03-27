@@ -33,7 +33,7 @@ jobs:
           hide_branch_rate: false
           hide_complexity: true
           indicators: true
-          output: both
+          output: file
           thresholds: "60 80"
 
       - name: Add Coverage PR Comment
