@@ -52,10 +52,12 @@ UNITY_INCLUDES	=	-I./unity
 
 COVERAGE_EXCLUDE_DIRS	=	unity
 COVERAGE_COMPILE_FLAGS	=	-fprofile-arcs -ftest-coverage
-GCOVR_FLAGS				=	--exclude unity	\
+GCOVR_FLAGS				=	\
 							-j	\
+							--filter project/	\
+							--html-details $(COVERAGE_DIR)html/output.html	\
 							--html-theme github.dark-green	\
-							--html-details $(COVERAGE_DIR)html/output.html
+							--html-title "pan<C>akes<🥞> string Code Coverage Report"	\
 
 all: tests_run
 	@:
