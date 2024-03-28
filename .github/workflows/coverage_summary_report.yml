@@ -10,33 +10,37 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-      - name: Checkout
-        uses: actions/checkout@v4
+      # - name: Checkout
+      #   uses: actions/checkout@v4
       
-      - name: Install python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
+      # - name: Install python
+      #   uses: actions/setup-python@v5
+      #   with:
+      #     python-version: '3.10'
     
-      - name: Install gcovr
-        run: pip3 install gcovr
+      # - name: Install gcovr
+      #   run: pip3 install gcovr
       
-      - name: Produce XML coverage
-        run: make coverage_xml
+      # - name: Produce XML coverage
+      #   run: make coverage_xml
       
-      - name: Generate code coverage summary report
-        uses: irongut/CodeCoverageSummary@v1.3.0
-        with:
-          filename: build/coverage/xml/*.xml
-          badge: true
-          format: markdown
-          hide_branch_rate: false
-          hide_complexity: true
-          indicators: true
-          output: file
-          thresholds: "60 80"
+      # - name: Generate code coverage summary report
+      #   uses: irongut/CodeCoverageSummary@v1.3.0
+      #   with:
+      #     filename: build/coverage/xml/*.xml
+      #     badge: true
+      #     format: markdown
+      #     hide_branch_rate: false
+      #     hide_complexity: true
+      #     indicators: true
+      #     output: file
+      #     thresholds: "60 80"
       - name: Move markdown file
         run: |
-          cat code-coverage-results.md
-          cp code-coverage-results.md build/coverage/
+          mkdir -p path/to/artifact
+          echo hello > path/to/artifact/world.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: path/to/artifact/world.txt
   
