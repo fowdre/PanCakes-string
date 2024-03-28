@@ -4,7 +4,7 @@ Part of the pan<C\>akes<🥞> collection, aimed to provide tools to help with C 
 
 pan\<C\>akes\<🥞\> string is an implementation of a heap-allocated string.
 
-[![Test code coverage summary report](https://github.com/fowdre/panCakes-string/actions/workflows/test_coverage_summary_report.yml/badge.svg)](https://github.com/fowdre/panCakes-string/actions/workflows/test_coverage_summary_report.yml)
+![Test code coverage summary report](https://github.com/fowdre/panCakes-string/actions/workflows/test_coverage_summary_report.yml/badge.svg)
 
 <!-- GENERATED COVERAGE START -->
 ![Code Coverage](https://img.shields.io/badge/Code%20Coverage-100%25-success?style=flat)

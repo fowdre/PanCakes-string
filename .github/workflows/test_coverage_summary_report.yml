@@ -34,7 +34,8 @@ jobs:
           badge: true
           format: markdown
           output: file
-          
+          fail_below_min: true
+
       - name: Insert report into README.md
         run: |
           mkdir -p assets/
