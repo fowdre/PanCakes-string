@@ -42,7 +42,8 @@ jobs:
           commit-message: Add generated coverage report
           branch: assets
           title: Add generated coverage report
-          body: |
-            This pull request adds the generated .md file to the repository
+          body: This pull request adds the generated .md file to the repository
           labels: automated, coverage
-          token: ${{ secrets.GITHUB_TOKEN }}
+          add-paths: |
+            *.md
+          token: ${{ secrets.GH_TOKEN }}
