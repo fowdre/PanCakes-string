@@ -40,7 +40,7 @@ jobs:
         run: |
           mkdir -p assets/
           cp code-coverage-results.md assets/
-          python3 .github/workflows/scripts/file_insert.py assets/code-coverage-results.md README.md "<!-- GENERATED COVERAGE START -->" "<!-- GENERATED COVERAGE END -->"
+          python3 scripts/file_insert.py assets/code-coverage-results.md README.md "<!-- GENERATED COVERAGE START -->" "<!-- GENERATED COVERAGE END -->"
       
       - name: Add generated markdown to repository
         run: |

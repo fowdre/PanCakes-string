@@ -1,0 +1,6 @@
+*.h linguist-language=C
+*.c linguist-language=C
+
+.github/** linguist-vendored=false
+unity/** linguist-vendored=true
+test/** linguist-vendored=true
