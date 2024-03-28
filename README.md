@@ -19,7 +19,7 @@ project.src | 100% | 100% | 0 | ✔
 
 ### String new
 
-- [ ] pkstr_new() | creates a new string
+- [X] pkstr_new() | creates a new string
 - [ ] pkstr_new_with_capacity() | creates a new string with a given capacity
 - [ ] pkstr_new_empty() | creates a new empty string
 - [ ] pkstr_from_pkstr() | creates a new string from another string
@@ -27,7 +27,7 @@ project.src | 100% | 100% | 0 | ✔
 
 ### String 'destruction'
 
-- [ ] pkstr_free() | frees the string
+- [X] pkstr_free() | frees the string
 - [ ] pkstr_clear() | clears the string but keeps the capacity
 - [ ] pkstr_reset() | clears the string and sets the capacity to 0
 

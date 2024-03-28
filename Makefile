@@ -30,8 +30,11 @@ COVERAGE_DIR	=	$(BUILD_DIR)coverage/
 PROJECT_DIR		=	project/
 SRC_DIR			=	$(PROJECT_DIR)src/
 
-SRC_RAW		= 	main.c
 SRC 		= 	$(addprefix $(SRC_DIR), $(SRC_RAW))
+SRC_RAW		= 	\
+				main.c	\
+				pkstr_new.c	\
+				pkstr_destroy.c
 
 OBJ 		= 	$(patsubst $(SRC_DIR)%.c, $(OBJECTS_DIR)%.o, $(SRC))
 
@@ -42,10 +45,12 @@ NAME		=	a.out
 INCLUDES	=	-I./$(PROJECT_DIR)include
 
 CFLAGS  	+=	-Wall -Wextra -Wfloat-equal -Wundef -Wcast-align -Wshadow	  \
-				-Wlogical-op -Wredundant-decls -I./include -fno-builtin -g3
+				-Wlogical-op -Wredundant-decls -fno-builtin
 
-TEST_REQUIRED	=	$(SRC_DIR)Adder.c
-TEST_SRC		=	test/TestAdder.c $(TEST_REQUIRED)
+TEST_REQUIRED	=	\
+					$(SRC_DIR)pkstr_new.c	\
+					$(SRC_DIR)pkstr_destroy.c
+TEST_SRC		=	test/Test_pkstr_new.c $(TEST_REQUIRED)
 
 UNITY_SRC		=	unity/unity.c
 UNITY_INCLUDES	=	-I./unity
@@ -65,7 +70,7 @@ GCOVR_XML_FLAGS			=	\
 all: tests_run
 	@:
 
-tests_run: $(BUILD_DIR) $(RES_DIR)
+tests_run: clean $(BUILD_DIR) $(RES_DIR)
 	@gcc $(CFLAGS) $(UNITY_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) -o $(RES_DIR)test_exec
 	@./$(RES_DIR)test_exec > $(RES_DIR)trace.txt || true
 
@@ -76,13 +81,13 @@ tests_run: $(BUILD_DIR) $(RES_DIR)
 	@$(ECHO) "\nFAILED: `grep -s FAIL $(RES_DIR)trace.txt | wc -l`"
 	@$(ECHO) `grep -s FAIL $(RES_DIR)trace.txt`
 
-coverage_html: $(COVERAGE_DIR)
+coverage_html: clean $(COVERAGE_DIR)
 	@gcc $(CFLAGS) $(COVERAGE_COMPILE_FLAGS) $(UNITY_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) -o $(COVERAGE_DIR)test_exec
 	@./$(COVERAGE_DIR)test_exec > $(COVERAGE_DIR)trace.txt || true
 	@mkdir -p $(COVERAGE_DIR)html
 	@gcovr -r . $(GCOVR_FLAGS) $(GCOVR_HTML_FLAGS)
 
-coverage_xml: $(COVERAGE_DIR)
+coverage_xml: clean $(COVERAGE_DIR)
 	@gcc $(CFLAGS) $(COVERAGE_COMPILE_FLAGS) $(UNITY_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) -o $(COVERAGE_DIR)test_exec
 	@./$(COVERAGE_DIR)test_exec > $(COVERAGE_DIR)trace.txt || true
 	@mkdir -p $(COVERAGE_DIR)xml
@@ -98,7 +103,7 @@ debug:
 
 $(OBJECTS_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $< && $(ECHO) $(GREEN_C)[OK]  	\
+	@$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $< && $(ECHO) $(GREEN_C)[OK]  	\
 		$(BOLD_T) $< $(DEFAULT) || $(ECHO) $(RED_C)[KO]$(BOLD_T) $< $(DEFAULT)
 
 $(BUILD_DIR):
