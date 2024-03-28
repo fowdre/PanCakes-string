@@ -25,7 +25,7 @@ endef
 
 BUILD_DIR		=	build/
 OBJECTS_DIR		=	$(BUILD_DIR)obj/
-RES_DIR			=	$(BUILD_DIR)res/
+RES_DIR			=	$(BUILD_DIR)result/
 COVERAGE_DIR	=	$(BUILD_DIR)coverage/
 PROJECT_DIR		=	project/
 SRC_DIR			=	$(PROJECT_DIR)src/
@@ -52,25 +52,35 @@ UNITY_INCLUDES	=	-I./unity
 
 COVERAGE_EXCLUDE_DIRS	=	unity
 COVERAGE_COMPILE_FLAGS	=	-fprofile-arcs -ftest-coverage
+GCOVR_FLAGS				=	\
+							-j	\
+							--filter project/
+GCOVR_HTML_FLAGS		=	\
+							--html-details $(COVERAGE_DIR)html/output.html	\
+							--html-theme github.dark-green	\
+							--html-title "pan<C>akes<🥞> string Code Coverage Report"
 GCOVR_FLAGS				=	--exclude unity --html-details $(COVERAGE_DIR)html/output.html
 
 all: tests_run
 	@:
 
 tests_run: $(BUILD_DIR) $(RES_DIR)
-	@gcc $(CFLAGS) $(COVERAGE_COMPILE_FLAGS) $(UNITY_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) -o $(COVERAGE_DIR)test_exec
-	@./$(COVERAGE_DIR)test_exec > $(RES_DIR)trace.txt || true
+	@gcc $(CFLAGS) $(UNITY_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) -o $(RES_DIR)test_exec
+	@./$(RES_DIR)test_exec > $(RES_DIR)trace.txt || true
 
-	@$(ECHO) "\nIGNORED: `grep -s IGNORE: $(RES_DIR)trace.txt | wc -l`"
+	@$(ECHO) "\nIGNORED: `grep -s IGNORE $(RES_DIR)trace.txt | wc -l`"
 	@$(ECHO) `grep -s IGNORE $(RES_DIR)trace.txt`
-	@$(ECHO) "\nPASSED: `grep -s PASS: $(RES_DIR)trace.txt | wc -l`"
+	@$(ECHO) "\nPASSED: `grep -s PASS $(RES_DIR)trace.txt | wc -l`"
 	@$(ECHO) `grep -s PASS $(RES_DIR)trace.txt`
-	@$(ECHO) "\nFAILED: `grep -s FAIL: $(RES_DIR)trace.txt | wc -l`"
+	@$(ECHO) "\nFAILED: `grep -s FAIL $(RES_DIR)trace.txt | wc -l`"
 	@$(ECHO) `grep -s FAIL $(RES_DIR)trace.txt`
 
-coverage: $(COVERAGE_DIR) tests_run
-	@echo "test"
+coverage_html: $(COVERAGE_DIR)
+	@gcc $(CFLAGS) $(COVERAGE_COMPILE_FLAGS) $(UNITY_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) -o $(COVERAGE_DIR)test_exec
+	@./$(COVERAGE_DIR)test_exec > $(COVERAGE_DIR)trace.txt || true
 	@mkdir -p $(COVERAGE_DIR)html
+	@gcovr -r . $(GCOVR_FLAGS) $(GCOVR_HTML_FLAGS)
+
 	@gcovr $(GCOVR_FLAGS)
 
 main: $(OBJ)
@@ -87,16 +97,16 @@ $(OBJECTS_DIR)%.o: $(SRC_DIR)%.c
 		$(BOLD_T) $< $(DEFAULT) || $(ECHO) $(RED_C)[KO]$(BOLD_T) $< $(DEFAULT)
 
 $(BUILD_DIR):
-	$(MKDIR) $(BUILD_DIR)
+	@$(MKDIR) $(BUILD_DIR)
 
 $(OBJECTS_DIR):
-	$(MKDIR) $(OBJECTS_DIR)
+	@$(MKDIR) $(OBJECTS_DIR)
 
 $(RES_DIR):
-	$(MKDIR) $(RES_DIR)
+	@$(MKDIR) $(RES_DIR)
 
 $(COVERAGE_DIR):
-	$(MKDIR) $(COVERAGE_DIR)
+	@$(MKDIR) $(COVERAGE_DIR)
 
 clean:
 	@$(RM) -rf $(BUILD_DIR)
