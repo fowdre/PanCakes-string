@@ -59,7 +59,8 @@ GCOVR_HTML_FLAGS		=	\
 							--html-details $(COVERAGE_DIR)html/output.html	\
 							--html-theme github.dark-green	\
 							--html-title "pan<C>akes<🥞> string Code Coverage Report"
-GCOVR_FLAGS				=	--exclude unity --html-details $(COVERAGE_DIR)html/output.html
+GCOVR_XML_FLAGS			=	\
+							--cobertura --output $(COVERAGE_DIR)xml/coverage.xml
 
 all: tests_run
 	@:
@@ -81,7 +82,11 @@ coverage_html: $(COVERAGE_DIR)
 	@mkdir -p $(COVERAGE_DIR)html
 	@gcovr -r . $(GCOVR_FLAGS) $(GCOVR_HTML_FLAGS)
 
-	@gcovr $(GCOVR_FLAGS)
+coverage_xml: $(COVERAGE_DIR)
+	@gcc $(CFLAGS) $(COVERAGE_COMPILE_FLAGS) $(UNITY_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) -o $(COVERAGE_DIR)test_exec
+	@./$(COVERAGE_DIR)test_exec > $(COVERAGE_DIR)trace.txt || true
+	@mkdir -p $(COVERAGE_DIR)xml
+	@gcovr -r . $(GCOVR_FLAGS) $(GCOVR_XML_FLAGS)
 
 main: $(OBJ)
 	@gcc $(OBJ) -o $(NAME) $(CFLAGS)

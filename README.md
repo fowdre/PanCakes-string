@@ -4,6 +4,9 @@ Part of the pan<C\>akes<🥞> collection, aimed to provide tools to help with C 
 
 pan\<C\>akes\<🥞\> string is an implementation of a heap-allocated string.
 
+<!-- GENERATED COVERAGE START -->
+<!-- GENERATED COVERAGE END -->
+
 ## Functions left to implement:
 
 ### String new
