@@ -7,12 +7,14 @@ pan\<C\>akes\<🥞\> string is an implementation of a heap-allocated string.
 ![Test code coverage summary report](https://github.com/fowdre/panCakes-string/actions/workflows/test_coverage_summary_report.yml/badge.svg)
 
 <!-- GENERATED COVERAGE START -->
-![Code Coverage](https://img.shields.io/badge/Code%20Coverage-100%25-success?style=flat)
+![Code Coverage](https://img.shields.io/badge/Code%20Coverage-93%25-success?style=flat)
 
 Package | Line Rate | Branch Rate | Complexity | Health
 -------- | --------- | ----------- | ---------- | ------
-project.src | 100% | 100% | 0 | ✔
-**Summary** | **100%** (2 / 2) | **100%** (0 / 0) | **0** | ✔
+project.src | 93% | 50% | 0 | ✔
+**Summary** | **93%** (13 / 14) | **50%** (1 / 2) | **0** | ✔
+
+_Minimum allowed line rate is `50%`_
 <!-- GENERATED COVERAGE END -->
 
 ## Functions left to implement:
