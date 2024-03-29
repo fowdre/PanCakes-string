@@ -5,21 +5,27 @@ else ifeq ($(OS),Windows_NT)
 else
     ECHO := echo
 endif
-
+ANSI_ESC_START	=	\x1b[
 MKDIR	=	mkdir -p
 
-DEFAULT 	=	"\033[0m"
-BOLD_T  	=	"\033[1m"
-DIM_T   	=	"\033[2m"
-UNDLN_T 	=	"\033[4m"
-RED_C   	=	"\033[31m"
-GREEN_C 	=	"\033[32m"
-LIGHT_RED	=	"\033[91m"
-LIGHT_GREEN	=	"\033[92m"
-LIGHT_CYAN	=	"\033[96m"
+DEFAULT 	=	"$(ANSI_ESC_START)0m"
+BOLD_T  	=	"$(ANSI_ESC_START)1m"
+DIM_T   	=	"$(ANSI_ESC_START)2m"
+UNDLN_T 	=	"$(ANSI_ESC_START)4m"
+RED_C   	=	"$(ANSI_ESC_START)31m"
+GREEN_C 	=	"$(ANSI_ESC_START)32m"
+LIGHT_RED	=	"$(ANSI_ESC_START)91m"
+LIGHT_GREEN	=	"$(ANSI_ESC_START)92m"
+LIGHT_CYAN	=	"$(ANSI_ESC_START)96m"
+ONESHOT_1	=	"$(ANSI_ESC_START)38;2;119;0;173m"	 # rgb(119, 0, 173)
+ONESHOT_2	=	"$(ANSI_ESC_START)38;2;230;175;21m" # rgb(230, 175, 21)
+
+SUCCESS_C 	=	$(ONESHOT_2)
+FAILURE_C 	=	$(ONESHOT_1)
+
 define success_message
-	@$(ECHO) $(BOLD_T)$(GREEN_C)"\n[✔] COMPILED:" $(DEFAULT)$(LIGHT_GREEN) \
-		"$(1)\n"$(DEFAULT) || $(ECHO) $(BOLD_T)$(RED_C)"[✘] \
+	@$(ECHO) $(BOLD_T)$(SUCCESS_C)"\n[✔] COMPILED:" $(DEFAULT)$(LIGHT_GREEN) \
+		"$(1)\n"$(DEFAULT) || $(ECHO) $(BOLD_T)$(FAILURE_C)"[✘] \
 		"$(UNDLN_T)"BUILD FAILED:" $(LIGHT_RED) "$(1)\n"$(DEFAULT)
 endef
 
@@ -105,8 +111,8 @@ debug:
 
 $(OBJECTS_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $< && $(ECHO) $(GREEN_C)[OK]  	\
-		$(BOLD_T) $< $(DEFAULT) || $(ECHO) $(RED_C)[KO]$(BOLD_T) $< $(DEFAULT)
+	@$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $< && $(ECHO) $(SUCCESS_C)[OK]  	\
+		$(BOLD_T) $< $(DEFAULT) || $(ECHO) $(FAILURE_C)[KO]$(BOLD_T) $< $(DEFAULT)
 
 $(BUILD_DIR):
 	@$(MKDIR) $(BUILD_DIR)
@@ -122,11 +128,14 @@ $(COVERAGE_DIR):
 
 clean:
 	@$(RM) -rf $(BUILD_DIR)
-	@$(ECHO) $(RED_C)$(DIM_T)"[clean]  "$(DEFAULT) $(BOLD_T)$(RED_C)		\
-		"DELETED: "$(DEFAULT) $(LIGHT_RED)"$(BUILD_DIR)"$(DEFAULT)
+	@$(ECHO) $(FAILURE_C)$(DIM_T)"[clean]  "$(DEFAULT) $(BOLD_T)$(FAILURE_C)		\
+		"DELETED: "$(DEFAULT) $(LIGHT_RED)"$(BUILD_DIR) directory"$(DEFAULT)
+	@$(RM) -rf vgcore.*
+	@$(ECHO) $(FAILURE_C)$(DIM_T)"[clean]  "$(DEFAULT) $(BOLD_T)$(FAILURE_C)		\
+		"DELETED: "$(DEFAULT) $(LIGHT_RED)"vgcore files"$(DEFAULT)
 
-re:	clean main
-
-.PRECIOUS: $(OBJ)
+re:
+	@$(MAKE) --no-print-directory clean
+	@$(MAKE) --no-print-directory main
 
 .PHONY: all tests_run coverage debug clean fclean re

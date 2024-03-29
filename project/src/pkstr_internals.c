@@ -18,16 +18,20 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "pkstr_internals.h"
+#include "pkstr_types.h"
 
 pkstr_uint_t i_pkstr_recompute_capacity(pkstr_uint_t value)
 {
     if (value <= 0)
         return BASE_CAPACITY;
-    return value * 2 + (value >> 1);
+    if (value > (MAX_CAPACITY / CAPACITY_INCREASE_FACTOR))
+        return MAX_CAPACITY;
+    return value * CAPACITY_INCREASE_FACTOR;
 }
 
 char *i_pkstr_new_from_raw_parts(

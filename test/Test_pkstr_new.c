@@ -12,7 +12,7 @@ void tearDown(void)
 
 void test_basic(void)
 {
-    pkstr_t str = pkstr_new("Hello, World!");
+    pkstr str = pkstr_new("Hello, World!");
 
     TEST_ASSERT_EQUAL_STRING("Hello, World!", str);
 

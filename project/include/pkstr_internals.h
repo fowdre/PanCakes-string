@@ -21,52 +21,14 @@
 #ifndef PKSTR_INTERNALS_H
     #define PKSTR_INTERNALS_H
 
-    #include <stdint.h>
-
-    #define PKSTR_HEADER_TYPE   32
-
-#if PKSTR_HEADER_TYPE % 8 != 0
-    #error "PKSTR_HEADER_TYPE must be a multiple of 8"
-#endif
-
-#if PKSTR_HEADER_TYPE < 8
-    #error "PKSTR_HEADER_TYPE must be at least 8"
-#endif
-
-#if PKSTR_HEADER_TYPE > 64
-    #error "PKSTR_HEADER_TYPE must be at most 64"
-#endif
-
-#if PKSTR_HEADER_TYPE == 8
-typedef uint8_t pkstr_uint_t;
-#elif PKSTR_HEADER_TYPE == 16
-typedef uint16_t pkstr_uint_t;
-#elif PKSTR_HEADER_TYPE == 32
-typedef uint32_t pkstr_uint_t;
-#elif PKSTR_HEADER_TYPE == 64
-typedef uint64_t pkstr_uint_t;
-#endif
-
-    #if defined(__GNUC__)
-        #define PKSTR_UNUSED __attribute__((unused))
-        #define PKSTR_PACKED __attribute__((packed))
-    #else
-        #error "Unsupported compiler"
-    #endif
+    #include "pkstr_types.h"
 
     #define PKSTR_H_SIZE        (sizeof(struct pkstr_header))
     #define PKSTR_H_PTR(str)    ((struct pkstr_header *)(str - PKSTR_H_SIZE))
 
-    #define MAX_CAPACITY_INCREASE   1024
-    #define BASE_CAPACITY    (PKSTR_HEADER_TYPE)
-
-struct PKSTR_PACKED pkstr_header {
-    pkstr_uint_t capacity;
-    pkstr_uint_t length;
-    char buffer[];
-};
-
-typedef char *pkstr;
+    #define CAPACITY_INCREASE_FACTOR    2
+    #define MAX_CAPACITY        ((pkstr_uint_t)1 << (PKSTR_HEADER_TYPE - 1))
+    #define BASE_CAPACITY       PKSTR_HEADER_TYPE
 
 pkstr_uint_t i_pkstr_recompute_capacity(pkstr_uint_t value);
 char *i_pkstr_new_from_raw_parts(

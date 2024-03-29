@@ -21,7 +21,7 @@
 #ifndef PKSTR_NEW_H
     #define PKSTR_NEW_H
 
-typedef char *pkstr;
+    #include "pkstr_types.h"
 
 pkstr pkstr_new(const char *str);
 

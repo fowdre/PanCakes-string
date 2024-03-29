@@ -21,7 +21,7 @@
 #ifndef PKSTR_DESTROY_H
     #define PKSTR_DESTROY_H
 
-typedef char *pkstr;
+    #include "pkstr_types.h"
 
 void pkstr_destroy(pkstr str);
 
