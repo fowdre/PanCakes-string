@@ -24,7 +24,53 @@
 
 #include "pkstr_internals.h"
 
+
+char *pkstr_new_empty(void)
+{
+    return i_pkstr_new_from_raw_parts(0, BASE_CAPACITY, NULL);
+}
+
 char *pkstr_new(const char *str)
+{
+    pkstr_uint_t len = 0;
+    pkstr_uint_t capacity = 0;
+    char *new_str;
+
+    if (str == NULL)
+        return pkstr_new_empty();
+    len = (pkstr_uint_t)strlen(str);
+    capacity = i_pkstr_recompute_capacity(len);
+    new_str = i_pkstr_new_from_raw_parts(len, capacity, str);
+    if (new_str == NULL)
+        return NULL;
+    return new_str;
+}
+
+char *pkstr_new_with_capacity(const char *str, pkstr_uint_t capacity)
+{
+    pkstr_uint_t len = 0;
+    char *new_str;
+
+    if (str == NULL)
+        return pkstr_new_empty();
+    len = (pkstr_uint_t)strlen(str);
+    if (capacity < len)
+        capacity = len;
+    new_str = i_pkstr_new_from_raw_parts(len, capacity, str);
+    if (new_str == NULL)
+        return NULL;
+    return new_str;
+}
+
+pkstr pkstr_new_from_pkstr(const pkstr str)
+{
+    const struct pkstr_header *header = PKSTR_H_PTR(str);
+
+    return i_pkstr_new_from_raw_parts(
+        header->length, header->capacity, header->buffer);
+}
+
+pkstr pkstr_repeat(const char *str, pkstr_uint_t count)
 {
     pkstr_uint_t len = 0;
     pkstr_uint_t capacity = 0;
@@ -32,9 +78,13 @@ char *pkstr_new(const char *str)
 
     if (str != NULL)
         len = (pkstr_uint_t)strlen(str);
-    capacity = i_pkstr_recompute_capacity(len);
-    new_str = i_pkstr_new_from_raw_parts(len, capacity, str);
+    capacity = i_pkstr_recompute_capacity(len * count);
+    if (str == NULL)
+        return pkstr_new_empty();
+    new_str = i_pkstr_new_from_raw_parts(len * count, capacity, NULL);
     if (new_str == NULL)
         return NULL;
+    for (pkstr_uint_t i = 0; i < count; i++)
+        strcat(new_str, str);
     return new_str;
 }

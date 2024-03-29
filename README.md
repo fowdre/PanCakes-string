@@ -22,10 +22,10 @@ _Minimum allowed line rate is `50%`_
 ### String new
 
 - [X] pkstr_new() | creates a new string
-- [ ] pkstr_new_with_capacity() | creates a new string with a given capacity
-- [ ] pkstr_new_empty() | creates a new empty string
-- [ ] pkstr_from_pkstr() | creates a new string from another string
-- [ ] pkstr_repeat() | creates a new string from repeating the given string a given number of times
+- [X] pkstr_new_with_capacity() | creates a new string with a given capacity
+- [X] pkstr_new_empty() | creates a new empty string
+- [X] pkstr_new_from_pkstr() | creates a new string from another string
+- [X] pkstr_repeat() | creates a new string from repeating the given string a given number of times
 
 ### String 'destruction'
 
