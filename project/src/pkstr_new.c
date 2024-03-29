@@ -54,7 +54,9 @@ char *pkstr_new_with_capacity(const char *str, pkstr_uint_t capacity)
     if (str == NULL)
         return pkstr_new_empty();
     len = (pkstr_uint_t)strlen(str);
-    if (capacity < len)
+    if (capacity == 0)
+        capacity = BASE_CAPACITY;
+    else if (capacity < len)
         capacity = len;
     new_str = i_pkstr_new_from_raw_parts(len, capacity, str);
     if (new_str == NULL)
@@ -66,6 +68,8 @@ pkstr pkstr_new_from_pkstr(const pkstr str)
 {
     const struct pkstr_header *header = PKSTR_H_PTR(str);
 
+    if (str == NULL)
+        return pkstr_new_empty();
     return i_pkstr_new_from_raw_parts(
         header->length, header->capacity, header->buffer);
 }

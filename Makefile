@@ -54,20 +54,28 @@ INCLUDES	=	-I./$(PROJECT_DIR)include
 CFLAGS  	+=	-Wall -Wextra -Wfloat-equal -Wundef -Wcast-align -Wshadow	  \
 				-Wlogical-op -Wredundant-decls -fno-builtin
 
+TEST_INCLUDES	=	-I./test/include
 TEST_REQUIRED	=	\
+					test/utils/test_utils.c	\
+					test/utils/test_entrypoint.c	\
 					$(SRC_DIR)pkstr_internals.c	\
 					$(SRC_DIR)pkstr_new.c	\
 					$(SRC_DIR)pkstr_destroy.c
-TEST_SRC		=	test/Test_pkstr_new.c $(TEST_REQUIRED)
+TEST_SRC		=	\
+					test/Test_pkstr_new.c	\
+					test/Test_pkstr_destroy.c
 
 UNITY_SRC		=	unity/unity.c
 UNITY_INCLUDES	=	-I./unity
 
 COVERAGE_EXCLUDE_DIRS	=	unity
+COVERAGE_EXCLUDE_FILES	=	$(SRC_DIR)pkstr_internals.c
 COVERAGE_COMPILE_FLAGS	=	-fprofile-arcs -ftest-coverage
 GCOVR_FLAGS				=	\
 							-j	\
-							--filter project/
+							--filter project/	\
+							--exclude $(COVERAGE_EXCLUDE_DIRS)	\
+							--exclude $(COVERAGE_EXCLUDE_FILES)
 GCOVR_HTML_FLAGS		=	\
 							--html-details $(COVERAGE_DIR)html/output.html	\
 							--html-theme github.dark-green	\
@@ -79,7 +87,7 @@ all: tests_run
 	@:
 
 tests_run: $(BUILD_DIR) $(RES_DIR)
-	@gcc $(CFLAGS) $(UNITY_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) -o $(RES_DIR)test_exec
+	@gcc $(CFLAGS) $(UNITY_INCLUDES) $(TEST_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) $(TEST_REQUIRED) -o $(RES_DIR)test_exec
 	@./$(RES_DIR)test_exec > $(RES_DIR)trace.txt || true
 
 	@$(ECHO) "\nIGNORED: `grep -s IGNORE $(RES_DIR)trace.txt | wc -l`"
@@ -89,14 +97,18 @@ tests_run: $(BUILD_DIR) $(RES_DIR)
 	@$(ECHO) "\nFAILED: `grep -s FAIL $(RES_DIR)trace.txt | wc -l`"
 	@$(ECHO) `grep -s FAIL $(RES_DIR)trace.txt`
 
-coverage_html: $(COVERAGE_DIR)
-	@gcc $(CFLAGS) $(COVERAGE_COMPILE_FLAGS) $(UNITY_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) -o $(COVERAGE_DIR)test_exec
+coverage_html:
+	@$(RM) -rf $(COVERAGE_DIR)
+	@$(MKDIR) $(COVERAGE_DIR)
+	@gcc $(CFLAGS) $(COVERAGE_COMPILE_FLAGS) $(UNITY_INCLUDES) $(TEST_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) $(TEST_REQUIRED) -o $(COVERAGE_DIR)test_exec
 	@./$(COVERAGE_DIR)test_exec > $(COVERAGE_DIR)trace.txt || true
 	@mkdir -p $(COVERAGE_DIR)html
 	@gcovr -r . $(GCOVR_FLAGS) $(GCOVR_HTML_FLAGS)
 
-coverage_xml: $(COVERAGE_DIR)
-	@gcc $(CFLAGS) $(COVERAGE_COMPILE_FLAGS) $(UNITY_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) -o $(COVERAGE_DIR)test_exec
+coverage_xml:
+	@$(RM) -rf $(COVERAGE_DIR)
+	@$(MKDIR) $(COVERAGE_DIR)
+	@gcc $(CFLAGS) $(COVERAGE_COMPILE_FLAGS) $(UNITY_INCLUDES) $(TEST_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) $(TEST_REQUIRED) -o $(COVERAGE_DIR)test_exec
 	@./$(COVERAGE_DIR)test_exec > $(COVERAGE_DIR)trace.txt || true
 	@mkdir -p $(COVERAGE_DIR)xml
 	@gcovr -r . $(GCOVR_FLAGS) $(GCOVR_XML_FLAGS)
