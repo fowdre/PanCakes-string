@@ -19,13 +19,30 @@
 */
 
 #include <stdlib.h>
+#include <string.h>
 
 #include "pkstr_internals.h"
 
-void pkstr_destroy(pkstr str)
+pkstr_uint_t i_pkstr_recompute_capacity(pkstr_uint_t value)
 {
-    struct pkstr_header *header = PKSTR_H_PTR(str);
+    if (value <= 0)
+        return BASE_CAPACITY;
+    return value * 2 + (value >> 1);
+}
 
-    if (str)
-        free(header);
+char *i_pkstr_new_from_raw_parts(
+    pkstr_uint_t len, pkstr_uint_t capacity, const char *str)
+{
+    size_t alloc_size = PKSTR_H_SIZE + (sizeof(char) * (capacity + len + 1));
+    struct pkstr_header *new_str;
+
+    new_str = malloc(alloc_size);
+    if (new_str == NULL)
+        return NULL;
+    memset(new_str, 0, alloc_size);
+    new_str->capacity = capacity;
+    new_str->length = len;
+    if (str != NULL)
+        memcpy(new_str->buffer, str, len);
+    return new_str->buffer;
 }

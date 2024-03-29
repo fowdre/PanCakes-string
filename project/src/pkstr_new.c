@@ -22,19 +22,19 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "pkstr_core.h"
+#include "pkstr_internals.h"
 
 char *pkstr_new(const char *str)
 {
-    char length = strlen(str);
-    struct pkstr_header *new_str;
+    pkstr_uint_t len = 0;
+    pkstr_uint_t capacity = 0;
+    char *new_str;
 
-    new_str = malloc(PKSTR_H_SIZE + (sizeof(char) * (length + 1)));
+    if (str != NULL)
+        len = (pkstr_uint_t)strlen(str);
+    capacity = i_pkstr_recompute_capacity(len);
+    new_str = i_pkstr_new_from_raw_parts(len, capacity, str);
     if (new_str == NULL)
-        return (char *)ALLOC_ERROR_DEFAULT;
-    memset(new_str->buffer, 0, length + 1);
-    new_str->capacity = length + length * 1.5;
-    new_str->length = length;
-    memcpy(new_str->buffer, str, length);
-    return new_str->buffer;
+        return NULL;
+    return new_str;
 }

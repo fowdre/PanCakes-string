@@ -18,8 +18,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PKSTR_CORE_H
-    #define PKSTR_CORE_H
+#ifndef PKSTR_INTERNALS_H
+    #define PKSTR_INTERNALS_H
 
     #include <stdint.h>
 
@@ -54,7 +54,11 @@ typedef uint64_t pkstr_uint_t;
         #error "Unsupported compiler"
     #endif
 
-PKSTR_UNUSED static const char ALLOC_ERROR_DEFAULT[] = "";
+    #define PKSTR_H_SIZE        (sizeof(struct pkstr_header))
+    #define PKSTR_H_PTR(str)    ((struct pkstr_header *)(str - PKSTR_H_SIZE))
+
+    #define MAX_CAPACITY_INCREASE   1024
+    #define BASE_CAPACITY    (PKSTR_HEADER_TYPE)
 
 struct PKSTR_PACKED pkstr_header {
     pkstr_uint_t capacity;
@@ -62,9 +66,10 @@ struct PKSTR_PACKED pkstr_header {
     char buffer[];
 };
 
-typedef char *pkstr_t;
+typedef char *pkstr;
 
-    #define PKSTR_H_SIZE        (sizeof(struct pkstr_header))
-    #define PKSTR_H_PTR(str)    ((struct pkstr_header *)(str - PKSTR_H_SIZE))
+pkstr_uint_t i_pkstr_recompute_capacity(pkstr_uint_t value);
+char *i_pkstr_new_from_raw_parts(
+    pkstr_uint_t len, pkstr_uint_t capacity, const char *str);
 
-#endif /* PKSTR_CORE_H */
+#endif /* PKSTR_INTERNALS_H */
