@@ -29,3 +29,8 @@ void test_pkstr_pkstr_clear_fn_basic(void)
 
     pkstr_destroy(str);
 }
+
+void test_pkstr_pkstr_clear_fn_NULL(void)
+{
+    pkstr_clear(NULL);
+}
