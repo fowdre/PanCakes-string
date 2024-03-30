@@ -17,11 +17,11 @@ void utils_assert_pkstr_header(const struct pkstr_header *header,
     TEST_ASSERT_NOT_NULL(header);
     
 #if PKSTR_HEADER_TYPE == PKSTR_HEADER_TYPE_TINY
+    TEST_ASSERT_EQUAL_UINT8(length, header->length);
+    TEST_ASSERT_EQUAL_UINT8(capacity, header->capacity);
+#elif PKSTR_HEADER_TYPE == PKSTR_HEADER_TYPE_SMALL
     TEST_ASSERT_EQUAL_UINT16(length, header->length);
     TEST_ASSERT_EQUAL_UINT16(capacity, header->capacity);
-#elif PKSTR_HEADER_TYPE == PKSTR_HEADER_TYPE_SMALL
-    TEST_ASSERT_EQUAL_UINT32(length, header->length);
-    TEST_ASSERT_EQUAL_UINT32(capacity, header->capacity);
 #elif PKSTR_HEADER_TYPE == PKSTR_HEADER_TYPE_MEDIUM
     TEST_ASSERT_EQUAL_UINT32(length, header->length);
     TEST_ASSERT_EQUAL_UINT32(capacity, header->capacity);
