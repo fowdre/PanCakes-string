@@ -60,7 +60,8 @@ TEST_REQUIRED	=	\
 					test/utils/test_entrypoint.c	\
 					$(SRC_DIR)pkstr_internals.c	\
 					$(SRC_DIR)pkstr_new.c	\
-					$(SRC_DIR)pkstr_destroy.c
+					$(SRC_DIR)pkstr_destroy.c	\
+					$(SRC_DIR)pkstr_comparison.c
 TEST_SRC		=	\
 					test/Test_pkstr_new.c	\
 					test/Test_pkstr_destroy.c
