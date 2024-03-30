@@ -34,5 +34,17 @@
     void test_pkstr_destroy_fn_basic(void);
     void test_pkstr_destroy_fn_NULL(void);
     void test_pkstr_pkstr_clear_fn_basic(void);
+    void test_pkstr_pkstr_clear_fn_NULL(void);
+
+    // Test_pkstr_comparison.c
+
+    void test_pkstr_equals_fn_basic(void);
+    void test_pkstr_equals_fn_NULL(void);
+    void test_pkstr_equals_fn_empty(void);
+    void test_pkstr_equals_fn_length(void);
+    void test_pkstr_equals_fn_capacity(void);
+    void test_pkstr_partial_fn_basic(void);
+    void test_pkstr_partial_fn_NULL(void);
+    void test_pkstr_partial_fn_empty(void);
 
 #endif /* TEST_UTILS_H */
