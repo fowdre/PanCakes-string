@@ -12,6 +12,8 @@
 
     // Tests
 
+    // Test_pkstr_new.c
+
     void test_pkstr_new_fn_basic(void);
     void test_pkstr_new_fn_NULL(void);
     void test_pkstr_new_with_capacity_fn_basic(void);
@@ -26,7 +28,11 @@
     void test_pkstr_repeat_fn_NULL(void);
     void test_pkstr_repeat_fn_zero_count(void);
     void test_pkstr_repeat_fn_zero_str(void);
+    
+    // Test_pkstr_destroy.c
+
     void test_pkstr_destroy_fn_basic(void);
     void test_pkstr_destroy_fn_NULL(void);
+    void test_pkstr_pkstr_clear_fn_basic(void);
 
 #endif /* TEST_UTILS_H */

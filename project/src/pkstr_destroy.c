@@ -19,13 +19,28 @@
 */
 
 #include <stdlib.h>
+#include <string.h>
 
 #include "pkstr_internals.h"
+#include "pkstr_types.h"
 
 void pkstr_destroy(pkstr str)
 {
-    struct pkstr_header *header = PKSTR_H_PTR(str);
+    struct pkstr_header *header;
 
-    if (str)
-        free(header);
+    if (!str)
+        return;
+    header = PKSTR_H_PTR(str);
+    free(header);
+}
+
+void pkstr_clear(pkstr str)
+{
+    struct pkstr_header *header;
+
+    if (!str)
+        return;
+    header = PKSTR_H_PTR(str);
+    memset(header->buffer, 0, header->length);
+    header->length = 0;
 }

@@ -1,6 +1,8 @@
 #include "unity.h"
 #include "pkstr_internals.h"
 
+#include <inttypes.h>
+
 void setUp(void)
 {
     return;
@@ -31,8 +33,6 @@ void utils_assert_pkstr_header(const struct pkstr_header *header,
 #endif
     TEST_ASSERT_EQUAL_STRING(buffer, header->buffer);
 }
-
-#include <inttypes.h>
 
 void utils_print_pkstr_header(const struct pkstr_header *header)
 {

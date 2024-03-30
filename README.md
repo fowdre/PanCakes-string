@@ -30,8 +30,8 @@ _Minimum allowed line rate is `50%`_
 ### String 'destruction'
 
 - [X] pkstr_free() | frees the string
-- [ ] pkstr_clear() | clears the string but keeps the capacity
-- [ ] pkstr_reset() | clears the string and sets the capacity to 0
+- [X] pkstr_clear() | clears the string but keeps the capacity
+- [ ] ~~pkstr_reset() | clears the string and sets the capacity to 0~~
 
 ### String comparison and search functions
 
