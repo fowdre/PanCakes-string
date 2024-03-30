@@ -1,4 +1,4 @@
-name: Test code coverage summary report
+name: Run tests | Generate coverage report | Update README.md
 
 on:
   workflow_dispatch:
