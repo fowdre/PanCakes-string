@@ -9,6 +9,7 @@ run-name: pan<C>akes<🥞> string tests coverage summary report
 
 jobs:
   code-coverage-summary:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
       contents: write
