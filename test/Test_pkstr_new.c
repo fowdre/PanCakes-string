@@ -113,6 +113,7 @@ void test_pkstr_new_from_pkstr_fn_basic(void)
     utils_assert_pkstr_header(header, 15, 30, "Niko & pancakes");
 
     pkstr_destroy(str);
+    pkstr_destroy(str1);
 }
 
 void test_pkstr_new_from_pkstr_fn_NULL(void)
