@@ -34,6 +34,5 @@
     void test_pkstr_destroy_fn_basic(void);
     void test_pkstr_destroy_fn_NULL(void);
     void test_pkstr_pkstr_clear_fn_basic(void);
-    void test_pkstr_pkstr_clear_fn_NULL(void);
 
 #endif /* TEST_UTILS_H */
