@@ -4,16 +4,11 @@ on:
   workflow_dispatch:
   
   pull_request:
-    branches:
-      - "main"
-    types:
-      - closed
 
 run-name: pan<C>akes<🥞> string tests coverage summary report
 
 jobs:
   code-coverage-summary:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -59,4 +54,4 @@ jobs:
           git add assets/code-coverage-results.md
           git add README.md
           git commit -m "Save generated coverage report & Add to README.md"
-          git push origin dev:main
+          git push origin main
