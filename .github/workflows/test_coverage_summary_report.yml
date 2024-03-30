@@ -39,6 +39,7 @@ jobs:
           format: markdown
           output: file
           fail_below_min: true
+          thresholds: "80 90"
 
       - name: Insert report into README.md
         run: |
