@@ -27,6 +27,7 @@ int main(void)
 
     RUN_TEST(test_pkstr_destroy_fn_basic);
     RUN_TEST(test_pkstr_destroy_fn_NULL);
+    RUN_TEST(test_pkstr_pkstr_clear_fn_basic);
     
     return UNITY_END();
 }
