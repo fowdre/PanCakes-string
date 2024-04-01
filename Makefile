@@ -42,6 +42,7 @@ SRC_RAW		= 	\
 				pkstr_internals.c	\
 				pkstr_new.c	\
 				pkstr_destroy.c	\
+				pkstr_comparison.c	\
 				pkstr_search.c
 
 OBJ 		= 	$(patsubst $(SRC_DIR)%.c, $(OBJECTS_DIR)%.o, $(SRC))
@@ -95,11 +96,11 @@ tests_run: $(BUILD_DIR) $(RES_DIR)
 	@gcc $(CFLAGS) $(UNITY_INCLUDES) $(TEST_INCLUDES) $(INCLUDES) $(UNITY_SRC) $(TEST_SRC) $(TEST_REQUIRED) -o $(RES_DIR)test_exec
 	@./$(RES_DIR)test_exec > $(RES_DIR)trace.txt || true
 
-	@$(ECHO) "\nIGNORED: `grep -s IGNORE $(RES_DIR)trace.txt | wc -l`"
-	@$(ECHO) `grep -s IGNORE $(RES_DIR)trace.txt`
+# @$(ECHO) "\nIGNORED: `grep -s IGNORE $(RES_DIR)trace.txt | wc -l`"
+# @$(ECHO) `grep -s IGNORE $(RES_DIR)trace.txt`
 	@$(ECHO) "\nPASSED: `grep -s PASS $(RES_DIR)trace.txt | wc -l`"
 	@$(ECHO) `grep -s PASS $(RES_DIR)trace.txt`
-	@$(ECHO) "\nFAILED: `grep -s FAIL $(RES_DIR)trace.txt | wc -l`"
+	@$(ECHO) "\nFAILED: `grep -s FAIL: $(RES_DIR)trace.txt | wc -l`"
 	@$(ECHO) `grep -s FAIL $(RES_DIR)trace.txt`
 
 coverage_html:

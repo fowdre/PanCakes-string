@@ -22,7 +22,7 @@
     #define PKSTR_COMPARISON_H
 
     #include <stdbool.h>
-    
+
     #include "pkstr_types.h"
 
 bool pkstr_equals(const pkstr pkstr1, const pkstr pkstr2);
