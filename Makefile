@@ -41,7 +41,8 @@ SRC_RAW		= 	\
 				main.c	\
 				pkstr_internals.c	\
 				pkstr_new.c	\
-				pkstr_destroy.c
+				pkstr_destroy.c	\
+				pkstr_search.c
 
 OBJ 		= 	$(patsubst $(SRC_DIR)%.c, $(OBJECTS_DIR)%.o, $(SRC))
 
@@ -61,11 +62,13 @@ TEST_REQUIRED	=	\
 					$(SRC_DIR)pkstr_internals.c	\
 					$(SRC_DIR)pkstr_new.c	\
 					$(SRC_DIR)pkstr_destroy.c	\
-					$(SRC_DIR)pkstr_comparison.c
+					$(SRC_DIR)pkstr_comparison.c	\
+					$(SRC_DIR)pkstr_search.c
 TEST_SRC		=	\
 					test/Test_pkstr_new.c	\
 					test/Test_pkstr_destroy.c	\
-					test/Test_pkstr_comparison.c
+					test/Test_pkstr_comparison.c	\
+					test/Test_pkstr_search.c
 
 UNITY_SRC		=	unity/unity.c
 UNITY_INCLUDES	=	-I./unity

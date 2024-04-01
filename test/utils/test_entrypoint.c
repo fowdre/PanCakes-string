@@ -38,6 +38,28 @@ int main(void)
     RUN_TEST(test_pkstr_partial_fn_basic);
     RUN_TEST(test_pkstr_partial_fn_NULL);
     RUN_TEST(test_pkstr_partial_fn_empty);
+
+    RUN_TEST(test_pkstr_starts_with_fn_basic);
+    RUN_TEST(test_pkstr_starts_with_fn_NULL);
+    RUN_TEST(test_pkstr_starts_with_fn_empty_literal);
+    RUN_TEST(test_pkstr_starts_with_fn_basic_false);
+    RUN_TEST(test_pkstr_ends_with_fn_basic);
+    RUN_TEST(test_pkstr_ends_with_fn_NULL);
+    RUN_TEST(test_pkstr_ends_with_fn_empty_literal);
+    RUN_TEST(test_pkstr_ends_with_fn_basic_false);
+    RUN_TEST(test_pkstr_contains_fn_basic);
+    RUN_TEST(test_pkstr_contains_fn_NULL);
+    RUN_TEST(test_pkstr_contains_fn_empty_literal);
+    RUN_TEST(test_pkstr_contains_fn_basic_false);
+    RUN_TEST(test_pkstr_lsearch_fn_basic);
+    RUN_TEST(test_pkstr_lsearch_fn_NULL);
+    RUN_TEST(test_pkstr_lsearch_fn_empty_literal);
+    RUN_TEST(test_pkstr_lsearch_fn_basic_not_found);
+    RUN_TEST(test_pkstr_rsearch_fn_basic);
+    RUN_TEST(test_pkstr_rsearch_fn_NULL);
+    RUN_TEST(test_pkstr_rsearch_fn_empty_literal);
+    RUN_TEST(test_pkstr_rsearch_fn_basic_not_found);
+    RUN_TEST(test_pkstr_ends_with_fn_suffix_larger_than_str);
     
     return UNITY_END();
 }
