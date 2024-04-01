@@ -47,4 +47,28 @@
     void test_pkstr_partial_fn_NULL(void);
     void test_pkstr_partial_fn_empty(void);
 
+    // Test_pkstr_search.c
+
+    void test_pkstr_starts_with_fn_basic(void);
+    void test_pkstr_starts_with_fn_NULL(void);
+    void test_pkstr_starts_with_fn_empty_literal(void);
+    void test_pkstr_starts_with_fn_basic_false(void);
+    void test_pkstr_ends_with_fn_basic(void);
+    void test_pkstr_ends_with_fn_NULL(void);
+    void test_pkstr_ends_with_fn_empty_literal(void);
+    void test_pkstr_ends_with_fn_basic_false(void);
+    void test_pkstr_contains_fn_basic(void);
+    void test_pkstr_contains_fn_NULL(void);
+    void test_pkstr_contains_fn_empty_literal(void);
+    void test_pkstr_contains_fn_basic_false(void);
+    void test_pkstr_lsearch_fn_basic(void);
+    void test_pkstr_lsearch_fn_NULL(void);
+    void test_pkstr_lsearch_fn_empty_literal(void);
+    void test_pkstr_lsearch_fn_basic_not_found(void);
+    void test_pkstr_rsearch_fn_basic(void);
+    void test_pkstr_rsearch_fn_NULL(void);
+    void test_pkstr_rsearch_fn_empty_literal(void);
+    void test_pkstr_rsearch_fn_basic_not_found(void);
+    void test_pkstr_ends_with_fn_suffix_larger_than_str(void);
+
 #endif /* TEST_UTILS_H */

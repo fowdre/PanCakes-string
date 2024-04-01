@@ -18,14 +18,18 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PKSTR_COMPARISON_H
-    #define PKSTR_COMPARISON_H
+#ifndef PKSTR_SEARCH_H
+    #define PKSTR_SEARCH_H
 
+    #include <stdio.h>
     #include <stdbool.h>
 
     #include "pkstr_types.h"
 
-bool pkstr_equals(const pkstr pkstr1, const pkstr pkstr2);
-bool pkstr_partial_equals(const pkstr pkstr1, const pkstr pkstr2);
+bool pkstr_starts_with(const pkstr str, const char *prefix);
+bool pkstr_ends_with(const pkstr str, const char *suffix);
+bool pkstr_contains(const pkstr str, const char *substr);
+ssize_t pkstr_lsearch(const pkstr str, const char *substr);
+ssize_t pkstr_rsearch(const pkstr str, const char *substr);
 
-#endif /* PKSTR_COMPARISON_H */
+#endif /* PKSTR_SEARCH_H */

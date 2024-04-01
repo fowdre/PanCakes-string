@@ -37,11 +37,11 @@ _Minimum allowed line rate is `80%`_
 
 - [X] pkstr_equals() | returns true if the strings' capacities, lengths, and buffers are equal
 - [X] pkstr_partial_equals() | returns true if strings' buffers are equal
-- [ ] pkstr_starts_with() | returns true if the string starts with the given string
-- [ ] pkstr_ends_with() | returns true if the string ends with the given string
-- [ ] pkstr_contains() | returns true if the string contains the given string
-- [ ] pkstr_lsearch() | searches for the given string in the string and returns the index, starting from the left
-- [ ] pkstr_rsearch() | searches for the given string in the string and returns the index, starting from the right
+- [X] pkstr_starts_with() | returns true if the string starts with the given string
+- [X] pkstr_ends_with() | returns true if the string ends with the given string
+- [X] pkstr_contains() | returns true if the string contains the given string
+- [X] pkstr_lsearch() | searches for the given string in the string and returns the index, starting from the left
+- [X] pkstr_rsearch() | searches for the given string in the string and returns the index, starting from the right
 
 ### Simple string operations
 

@@ -5,7 +5,6 @@
 
 #include "test_utils.h"
 
-#include "pkstr_internals.h"
 #include "pkstr_new.h"
 #include "pkstr_destroy.h"
 #include "pkstr_comparison.h"
