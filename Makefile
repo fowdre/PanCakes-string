@@ -43,7 +43,9 @@ SRC_RAW		= 	\
 				pkstr_new.c	\
 				pkstr_destroy.c	\
 				pkstr_comparison.c	\
-				pkstr_search.c
+				pkstr_search.c	\
+				pkstr_simple1.c	\
+				pkstr_simple2.c
 
 OBJ 		= 	$(patsubst $(SRC_DIR)%.c, $(OBJECTS_DIR)%.o, $(SRC))
 
