@@ -45,14 +45,15 @@ _Minimum allowed line rate is `80%`_
 
 ### Simple string operations
 
-- [ ] pkstr_len() | returns the length of the string
-- [ ] pkstr_cat() | concatenates two strings
-- [ ] pkstr_ncat() | concatenates two strings up to a given length
-- [ ] pkstr_insert() | insert a string at the given index
-- [ ] pkstr_trim() | trim the string using the given bytes
-- [ ] pkstr_truncate() | truncates the string at the given index
-- [ ] pkstr_to_upper() | converts the string to uppercase
-- [ ] pkstr_to_lower() | converts the string to lowercase
+- [X] pkstr_len() | returns the length of the string
+- [X] pkstr_cat() | concatenates two strings
+- [X] pkstr_ncat() | concatenates two strings up to a given length
+- [X] pkstr_insert() | insert a string at the given index
+- [X] pkstr_trim_start() | trim the string from the start using the given bytes
+- [X] pkstr_trim_end() | trim the string from the end using the given bytes
+- [X] pkstr_remove() | remove bytes between the given indexes
+- [X] pkstr_to_upper() | converts the string to uppercase
+- [X] pkstr_to_lower() | converts the string to lowercase
 
 ### Other string operations
 
