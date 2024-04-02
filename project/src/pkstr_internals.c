@@ -18,6 +18,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -34,19 +35,48 @@ pkstr_uint_t i_pkstr_recompute_capacity(pkstr_uint_t value)
     return value * CAPACITY_INCREASE_FACTOR;
 }
 
-char *i_pkstr_new_from_raw_parts(
+struct pkstr_header *i_pkstr_header_new(
     pkstr_uint_t len, pkstr_uint_t capacity, const char *str)
 {
     size_t alloc_size = PKSTR_H_SIZE + (sizeof(char) * (capacity + len + 1));
-    struct pkstr_header *new_str;
+    struct pkstr_header *new_header;
 
-    new_str = malloc(alloc_size);
-    if (new_str == NULL)
+    new_header = malloc(alloc_size);
+    if (new_header == NULL)
         return NULL;
-    memset(new_str, 0, alloc_size);
-    new_str->capacity = capacity;
-    new_str->length = len;
+    memset(new_header, 0, alloc_size);
+    new_header->capacity = capacity;
+    new_header->length = len;
     if (str != NULL)
-        memcpy(new_str->buffer, str, len);
-    return new_str->buffer;
+        memcpy(new_header->buffer, str, len);
+    return new_header;
+}
+
+char *i_pkstr_new_from_raw_parts(
+    pkstr_uint_t len, pkstr_uint_t capacity, const char *str)
+{
+    struct pkstr_header *new_header;
+
+    new_header = i_pkstr_header_new(len, capacity, str);
+    if (new_header == NULL)
+        return NULL;
+    return new_header->buffer;
+}
+
+pkstr i_pkstr_get_new_extend(pkstr str, pkstr_uint_t new_capacity)
+{
+    struct pkstr_header *header;
+    struct pkstr_header *new_header;
+
+    if (str == NULL)
+        return str;
+    header = PKSTR_H_PTR(str);
+    if (new_capacity <= header->capacity)
+        return str;
+    new_header = i_pkstr_header_new(
+        header->length, new_capacity, header->buffer);
+    if (new_header == NULL)
+        return str;
+    free(header);
+    return new_header->buffer;
 }

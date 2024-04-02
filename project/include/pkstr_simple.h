@@ -18,23 +18,20 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PKSTR_INTERNALS_H
-    #define PKSTR_INTERNALS_H
+#ifndef PKSTR_SIMPLE_H
+    #define PKSTR_SIMPLE_H
 
     #include "pkstr_types.h"
 
-    #define PKSTR_H_SIZE        (sizeof(struct pkstr_header))
-    #define PKSTR_H_PTR(str)    ((struct pkstr_header *)(str - PKSTR_H_SIZE))
+pkstr_uint_t pkstr_len(const pkstr str);
+void pkstr_cat(pkstr *str1, const pkstr str2);
+void pkstr_ncat(pkstr *str1, const pkstr str2, pkstr_uint_t n);
+void pkstr_insert(pkstr *str1, const pkstr str2, pkstr_uint_t index);
+void pkstr_trim_start(pkstr str, const char *bytes);
+void pkstr_trim_end(pkstr str, const char *bytes);
+void pkstr_remove(
+    const pkstr str, pkstr_uint_t index_start, pkstr_uint_t index_end);
+void pkstr_to_upper(const pkstr str);
+void pkstr_to_lower(const pkstr str);
 
-    #define CAPACITY_INCREASE_FACTOR    2
-    #define MAX_CAPACITY        ((pkstr_uint_t)1 << (PKSTR_HEADER_TYPE - 1))
-    #define BASE_CAPACITY       PKSTR_HEADER_TYPE
-
-pkstr_uint_t i_pkstr_recompute_capacity(pkstr_uint_t value);
-char *i_pkstr_new_from_raw_parts(
-    pkstr_uint_t len, pkstr_uint_t capacity, const char *str);
-struct pkstr_header *i_pkstr_header_new(
-    pkstr_uint_t len, pkstr_uint_t capacity, const char *str);
-pkstr i_pkstr_get_new_extend(pkstr str, pkstr_uint_t new_capacity);
-
-#endif /* PKSTR_INTERNALS_H */
+#endif /* PKSTR_SIMPLE_H */
