@@ -71,4 +71,35 @@
     void test_pkstr_rsearch_fn_basic_not_found(void);
     void test_pkstr_ends_with_fn_suffix_larger_than_str(void);
 
+    // Test_pkstr_simple.c
+
+    void test_pkstr_len_fn_basic(void);
+    void test_pkstr_len_fn_NULL(void);
+    void test_pkstr_cat_fn_basic(void);
+    void test_pkstr_cat_fn_NULL(void);
+    void test_pkstr_cat_fn_realloc(void);
+    void test_pkstr_ncat_fn_basic(void);
+    void test_pkstr_ncat_fn_NULL(void);
+    void test_pkstr_ncat_fn_realloc(void);
+    void test_pkstr_insert_fn_basic(void);
+    void test_pkstr_insert_fn_NULL(void);
+    void test_pkstr_insert_fn_larger_index(void);
+    void test_pkstr_insert_fn_realloc(void);
+    void test_pkstr_trim_start_fn_basic(void);
+    void test_pkstr_trim_start_fn_NULL(void);
+    void test_pkstr_trim_start_fn_no_trim(void);
+    void test_pkstr_trim_start_fn_all_trim(void);
+    void test_pkstr_trim_end_fn_basic(void);
+    void test_pkstr_trim_end_fn_NULL(void);
+    void test_pkstr_trim_end_fn_all_trim(void);
+    void test_pkstr_remove_fn_basic(void);
+    void test_pkstr_remove_fn_NULL(void);
+    void test_pkstr_remove_fn_start_greater_than_length(void);
+    void test_pkstr_remove_fn_end_greater_than_length(void);
+    void test_pkstr_remove_fn_start_greater_than_end(void);
+    void test_pkstr_to_upper_fn_basic(void);
+    void test_pkstr_to_upper_fn_NULL(void);
+    void test_pkstr_to_lower_fn_basic(void);
+    void test_pkstr_to_lower_fn_NULL(void);
+
 #endif /* TEST_UTILS_H */
