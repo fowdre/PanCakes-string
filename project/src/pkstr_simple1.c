@@ -38,7 +38,7 @@ void pkstr_cat(pkstr *str1, const pkstr str2)
     struct pkstr_header *header1;
     const struct pkstr_header *header2;
 
-    if (*str1 == NULL || str2 == NULL)
+    if (str1 == NULL || str2 == NULL)
         return;
     header1 = PKSTR_H_PTR(*str1);
     header2 = PKSTR_H_PTR(str2);
@@ -60,7 +60,7 @@ void pkstr_ncat(pkstr *str1, const pkstr str2, pkstr_uint_t n)
 
     if (n == 0)
         return;
-    if (*str1 == NULL || str2 == NULL)
+    if (str1 == NULL || str2 == NULL)
         return;
     header1 = PKSTR_H_PTR(*str1);
     new_length = header1->length + n;
@@ -80,7 +80,7 @@ void pkstr_insert(pkstr *str1, const pkstr str2, pkstr_uint_t index)
     struct pkstr_header *h1;
     const struct pkstr_header *h2;
 
-    if (*str1 == NULL || str2 == NULL)
+    if (str1 == NULL || str2 == NULL)
         return;
     h1 = PKSTR_H_PTR(*str1);
     h2 = PKSTR_H_PTR(str2);

@@ -50,6 +50,7 @@ void pkstr_trim_start(const pkstr str, const char *bytes)
     if (bytes_to_trim == 0)
         return;
     memmove(str, str + bytes_to_trim, header->length - bytes_to_trim);
+    memset(str + header->length - bytes_to_trim, 0, bytes_to_trim);
 }
 
 void pkstr_trim_end(const pkstr str, const char *bytes)
@@ -79,8 +80,10 @@ void pkstr_remove(
     if (str == NULL)
         return;
     header = PKSTR_H_PTR(str);
-    if (index_start >= header->length || index_end >= header->length)
+    if (index_start >= header->length)
         return;
+    if (index_end >= header->length)
+        index_end = header->length;
     if (index_start > index_end)
         return;
     new_length = header->length - (index_end - index_start);
@@ -91,6 +94,8 @@ void pkstr_remove(
 
 void pkstr_to_upper(const pkstr str)
 {
+    if (str == NULL)
+        return;
     for (size_t i = 0; str[i] != '\0'; i++)
         if (str[i] >= 'a' && str[i] <= 'z')
             str[i] -= 32;
@@ -98,6 +103,8 @@ void pkstr_to_upper(const pkstr str)
 
 void pkstr_to_lower(const pkstr str)
 {
+    if (str == NULL)
+        return;
     for (size_t i = 0; str[i] != '\0'; i++)
         if (str[i] >= 'A' && str[i] <= 'Z')
             str[i] += 32;
