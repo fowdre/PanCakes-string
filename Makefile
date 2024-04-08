@@ -45,7 +45,8 @@ SRC_RAW		= 	\
 				pkstr_comparison.c	\
 				pkstr_search.c	\
 				pkstr_simple1.c	\
-				pkstr_simple2.c
+				pkstr_simple2.c	\
+				pkstr_advanced1.c
 
 OBJ 		= 	$(patsubst $(SRC_DIR)%.c, $(OBJECTS_DIR)%.o, $(SRC))
 
@@ -56,7 +57,7 @@ NAME		=	a.out
 INCLUDES	=	-I./$(PROJECT_DIR)include
 
 CFLAGS  	+=	-Wall -Wextra -Wfloat-equal -Wundef -Wcast-align -Wshadow	  \
-				-Wlogical-op -Wredundant-decls -fno-builtin
+				-Wlogical-op -Wredundant-decls -g3
 
 TEST_INCLUDES	=	-I./test/include
 TEST_REQUIRED	=	\
