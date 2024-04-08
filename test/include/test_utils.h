@@ -102,4 +102,19 @@
     void test_pkstr_to_lower_fn_basic(void);
     void test_pkstr_to_lower_fn_NULL(void);
 
+    // Test_pkstr_advanced.c
+
+    void test_pkstr_is_empty_fn_basic(void);
+    void test_pkstr_is_empty_fn_NULL(void);
+    void test_pkstr_is_empty_fn_empty(void);
+    void test_pkstr_split_fn_basic(void);
+    void test_pkstr_split_fn_NULL(void);
+    void test_pkstr_split_fn_empty(void);
+    void test_pkstr_range_fn_basic(void);
+    void test_pkstr_range_fn_NULL(void);
+    void test_pkstr_range_fn_empty(void);
+    void test_pkstr_range_fn_negative(void);
+    void test_pkstr_range_fn_start_greater_than_length(void);
+    void test_pkstr_range_fn_start_greater_than_end(void);
+
 #endif /* TEST_UTILS_H */
