@@ -55,11 +55,11 @@ _Minimum allowed line rate is `80%`_
 - [X] pkstr_to_upper() | converts the string to uppercase
 - [X] pkstr_to_lower() | converts the string to lowercase
 
-### Other string operations
+### Advanced string operations
 
-- [ ] pkstr_is_empty() | returns true if the string is empty, false otherwise
-- [ ] pkstr_split() | splits the string using the given bytes
-- [ ] pkstr_range() | returns a new string of the given range
+- [X] pkstr_is_empty() | returns true if the string is empty, false otherwise
+- [X] pkstr_split() | splits the string using the given bytes
+- [X] pkstr_range() | returns a new string of the given range
 - [ ] pkstr_shrink() | shrinks the string to fit the length
 - [ ] pkstr_shrink_to() | shrinks the string to fit the given length
 - [ ] pkstr_filter() | filters the string using the given function

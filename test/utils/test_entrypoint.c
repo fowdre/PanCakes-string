@@ -6,6 +6,8 @@ int main(void)
 {
     UNITY_BEGIN();
     
+    // Test_pkstr_new.c
+
     RUN_TEST(test_pkstr_new_fn_basic);
     RUN_TEST(test_pkstr_new_fn_NULL);
 
@@ -14,7 +16,7 @@ int main(void)
     RUN_TEST(test_pkstr_new_with_capacity_fn_capacity_less_than_length);
     RUN_TEST(test_pkstr_new_with_capacity_fn_capacity_equal_length);
     RUN_TEST(test_pkstr_new_with_capacity_fn_zero_capacity);
-    
+
     RUN_TEST(test_pkstr_new_empty_fn_basic);
     
     RUN_TEST(test_pkstr_new_from_pkstr_fn_basic);
@@ -25,10 +27,14 @@ int main(void)
     RUN_TEST(test_pkstr_repeat_fn_zero_count);
     RUN_TEST(test_pkstr_repeat_fn_zero_str);
 
+    // Test_pkstr_destroy.c
+
     RUN_TEST(test_pkstr_destroy_fn_basic);
     RUN_TEST(test_pkstr_destroy_fn_NULL);
     RUN_TEST(test_pkstr_pkstr_clear_fn_basic);
     RUN_TEST(test_pkstr_pkstr_clear_fn_NULL);
+
+    // Test_pkstr_comparison.c
 
     RUN_TEST(test_pkstr_equals_fn_basic);
     RUN_TEST(test_pkstr_equals_fn_NULL);
@@ -38,6 +44,8 @@ int main(void)
     RUN_TEST(test_pkstr_partial_fn_basic);
     RUN_TEST(test_pkstr_partial_fn_NULL);
     RUN_TEST(test_pkstr_partial_fn_empty);
+
+    // Test_pkstr_search.c
 
     RUN_TEST(test_pkstr_starts_with_fn_basic);
     RUN_TEST(test_pkstr_starts_with_fn_NULL);
@@ -60,6 +68,8 @@ int main(void)
     RUN_TEST(test_pkstr_rsearch_fn_empty_literal);
     RUN_TEST(test_pkstr_rsearch_fn_basic_not_found);
     RUN_TEST(test_pkstr_ends_with_fn_suffix_larger_than_str);
+
+    // Test_pkstr_simple.c
 
     RUN_TEST(test_pkstr_len_fn_basic);
     RUN_TEST(test_pkstr_len_fn_NULL);
@@ -89,6 +99,21 @@ int main(void)
     RUN_TEST(test_pkstr_to_upper_fn_NULL);
     RUN_TEST(test_pkstr_to_lower_fn_basic);
     RUN_TEST(test_pkstr_to_lower_fn_NULL);
+
+    // Test_pkstr_advanced.c
+
+    RUN_TEST(test_pkstr_is_empty_fn_basic);
+    RUN_TEST(test_pkstr_is_empty_fn_NULL);
+    RUN_TEST(test_pkstr_is_empty_fn_empty);
+    RUN_TEST(test_pkstr_split_fn_basic);
+    RUN_TEST(test_pkstr_split_fn_NULL);
+    RUN_TEST(test_pkstr_split_fn_empty);
+    RUN_TEST(test_pkstr_range_fn_basic);
+    RUN_TEST(test_pkstr_range_fn_NULL);
+    RUN_TEST(test_pkstr_range_fn_empty);
+    RUN_TEST(test_pkstr_range_fn_negative);
+    RUN_TEST(test_pkstr_range_fn_start_greater_than_length);
+    RUN_TEST(test_pkstr_range_fn_start_greater_than_end);
     
     return UNITY_END();
 }

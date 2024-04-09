@@ -36,7 +36,7 @@ void utils_assert_pkstr_header(const struct pkstr_header *header,
 
 void utils_print_pkstr_header(const struct pkstr_header *header)
 {
-    printf("Capacity\t->\t%"PRIu64"\n", header->capacity);
-    printf("Length\t->\t%"PRIu64"\n", header->length);
+    printf("Capacity\t->\t%"PRIu64"\n", (uint64_t)header->capacity);
+    printf("Length\t->\t%"PRIu64"\n", (uint64_t)header->length);
     printf("Buffer\t->\t[%s]\n", header->buffer);
 }
