@@ -132,7 +132,8 @@ pkstr pkstr_range(const pkstr str, int64_t start, int64_t end)
 
     if (str == NULL)
         return NULL;
-    if (strlen(str) == 0)
+    header = PKSTR_H_PTR(str);
+    if (header->length == 0)
         return pkstr_new_empty();
     header = PKSTR_H_PTR(str);
     pkstr_range_i_checks(header, &start, &end);
