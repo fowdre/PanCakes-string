@@ -41,12 +41,12 @@ bool pkstr_is_empty(const pkstr str)
     return header->length == 0;
 }
 
-static bool pkstr_split_i_realloc_failure_cleanup(
-    pkstr *pkstr_array, size_t pkstr_array_size, char *cpy_p)
+static bool pkstr_split_i_realloc_failure_cleanup(pkstr *pkstr_array,
+    size_t pkstr_array_size, char *cpy_p)
 {
     free(cpy_p);
     for (size_t i = 0; i < pkstr_array_size; i++)
-        pkstr_destroy(pkstr_array[i]);
+        pkstr_destroy(&pkstr_array[i]);
     free(pkstr_array);
     return false;
 }

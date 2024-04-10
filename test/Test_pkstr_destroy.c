@@ -10,11 +10,14 @@ void test_pkstr_destroy_fn_basic(void)
 {
     pkstr str = pkstr_new("Niko & pancakes");
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_destroy_fn_NULL(void)
 {
+    pkstr str = NULL;
+
+    pkstr_destroy(&str);
     pkstr_destroy(NULL);
 }
 
@@ -26,7 +29,7 @@ void test_pkstr_pkstr_clear_fn_basic(void)
     const struct pkstr_header *header = PKSTR_H_PTR(str);
     utils_assert_pkstr_header(header, 0, 30, "");
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_pkstr_clear_fn_NULL(void)

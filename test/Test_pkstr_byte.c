@@ -14,7 +14,7 @@ void test_pkstr_push_fn_basic(void)
     pkstr_push(&str, '!');
     TEST_ASSERT_EQUAL_STRING("Niko & pancakes!", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_push_fn_NULL(void)
@@ -30,7 +30,7 @@ void test_pkstr_push_fn_realloc(void)
     pkstr_push(&str, '-');
     TEST_ASSERT_EQUAL_STRING("-|-", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_pop_fn_basic(void)
@@ -40,7 +40,7 @@ void test_pkstr_pop_fn_basic(void)
     pkstr_pop(str);
     TEST_ASSERT_EQUAL_STRING("Niko & pancakes", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_pop_fn_NULL(void)
@@ -55,7 +55,7 @@ void test_pkstr_pop_fn_empty(void)
     pkstr_pop(str);
     TEST_ASSERT_EQUAL_STRING("", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_insert_byte_fn_basic(void)
@@ -65,7 +65,7 @@ void test_pkstr_insert_byte_fn_basic(void)
     pkstr_insert_byte(&str, '!', 4);
     TEST_ASSERT_EQUAL_STRING("Niko! & pancakes", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_insert_byte_fn_NULL(void)
@@ -80,7 +80,7 @@ void test_pkstr_insert_byte_fn_front(void)
     pkstr_insert_byte(&str, 'N', 0);
     TEST_ASSERT_EQUAL_STRING("Niko & pancakes", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_insert_byte_fn_middle(void)
@@ -90,7 +90,7 @@ void test_pkstr_insert_byte_fn_middle(void)
     pkstr_insert_byte(&str, '&', 5);
     TEST_ASSERT_EQUAL_STRING("Niko & pancakes", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_insert_byte_fn_back(void)
@@ -100,7 +100,7 @@ void test_pkstr_insert_byte_fn_back(void)
     pkstr_insert_byte(&str, '!', 15);
     TEST_ASSERT_EQUAL_STRING("Niko & pancakes!", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_insert_byte_fn_out_of_bounds(void)
@@ -110,7 +110,7 @@ void test_pkstr_insert_byte_fn_out_of_bounds(void)
     pkstr_insert_byte(&str, '!', 727);
     TEST_ASSERT_EQUAL_STRING("Niko & pancakes!", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_insert_byte_fn_realloc(void)
@@ -121,7 +121,7 @@ void test_pkstr_insert_byte_fn_realloc(void)
     pkstr_insert_byte(&str, '-', 2);
     TEST_ASSERT_EQUAL_STRING("-|-", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_pkstr_lfind_byte_fn_basic(void)
@@ -130,7 +130,7 @@ void test_pkstr_pkstr_lfind_byte_fn_basic(void)
 
     TEST_ASSERT_EQUAL(4, pkstr_lfind_byte(str, '!'));
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_pkstr_lfind_byte_fn_NULL(void)
@@ -144,7 +144,7 @@ void test_pkstr_pkstr_lfind_byte_fn_front(void)
 
     TEST_ASSERT_EQUAL(0, pkstr_lfind_byte(str, 'N'));
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_pkstr_lfind_byte_fn_middle(void)
@@ -153,7 +153,7 @@ void test_pkstr_pkstr_lfind_byte_fn_middle(void)
 
     TEST_ASSERT_EQUAL(6, pkstr_lfind_byte(str, 'P'));
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_pkstr_lfind_byte_fn_back(void)
@@ -162,7 +162,7 @@ void test_pkstr_pkstr_lfind_byte_fn_back(void)
 
     TEST_ASSERT_EQUAL(4, pkstr_lfind_byte(str, '!'));
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_pkstr_lfind_byte_fn_not_found(void)
@@ -171,7 +171,7 @@ void test_pkstr_pkstr_lfind_byte_fn_not_found(void)
 
     TEST_ASSERT_EQUAL(-1, pkstr_lfind_byte(str, '&'));
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_pkstr_rfind_byte_fn_basic(void)
@@ -180,7 +180,7 @@ void test_pkstr_pkstr_rfind_byte_fn_basic(void)
 
     TEST_ASSERT_EQUAL(14, pkstr_rfind_byte(str, '!'));
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_pkstr_rfind_byte_fn_NULL(void)
@@ -194,7 +194,7 @@ void test_pkstr_pkstr_rfind_byte_fn_front(void)
 
     TEST_ASSERT_EQUAL(0, pkstr_rfind_byte(str, 'N'));
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_pkstr_rfind_byte_fn_middle(void)
@@ -203,7 +203,7 @@ void test_pkstr_pkstr_rfind_byte_fn_middle(void)
 
     TEST_ASSERT_EQUAL(6, pkstr_rfind_byte(str, 'P'));
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_pkstr_rfind_byte_fn_back(void)
@@ -212,7 +212,7 @@ void test_pkstr_pkstr_rfind_byte_fn_back(void)
 
     TEST_ASSERT_EQUAL(14, pkstr_rfind_byte(str, '!'));
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_pkstr_rfind_byte_fn_not_found(void)
@@ -221,7 +221,7 @@ void test_pkstr_pkstr_rfind_byte_fn_not_found(void)
 
     TEST_ASSERT_EQUAL(-1, pkstr_rfind_byte(str, '&'));
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_remove_byte_fn_basic(void)
@@ -231,7 +231,7 @@ void test_pkstr_remove_byte_fn_basic(void)
     pkstr_remove_byte(str, 6);
     TEST_ASSERT_EQUAL_STRING("Niko! Pancakes!", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_remove_byte_fn_NULL(void)
@@ -246,7 +246,7 @@ void test_pkstr_remove_byte_fn_out_of_bounds(void)
     pkstr_remove_byte(str, 727);
     TEST_ASSERT_EQUAL_STRING("Niko! Pancakes!", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_remove_byte_fn_empty(void)
@@ -256,7 +256,7 @@ void test_pkstr_remove_byte_fn_empty(void)
     pkstr_remove_byte(str, 0);
     TEST_ASSERT_EQUAL_STRING("", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_lremove_byte_fn_basic(void)
@@ -266,7 +266,7 @@ void test_pkstr_lremove_byte_fn_basic(void)
     pkstr_lremove_byte(str, '!');
     TEST_ASSERT_EQUAL_STRING("Niko Pancakes!", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_lremove_byte_fn_NULL(void)
@@ -281,7 +281,7 @@ void test_pkstr_lremove_byte_fn_not_found(void)
     pkstr_lremove_byte(str, '&');
     TEST_ASSERT_EQUAL_STRING("Niko! Pancakes!", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_rremove_byte_fn_basic(void)
@@ -291,7 +291,7 @@ void test_pkstr_rremove_byte_fn_basic(void)
     pkstr_rremove_byte(str, '!');
     TEST_ASSERT_EQUAL_STRING("Niko! Pancakes", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_rremove_byte_fn_NULL(void)
@@ -306,5 +306,5 @@ void test_pkstr_rremove_byte_fn_not_found(void)
     pkstr_rremove_byte(str, '&');
     TEST_ASSERT_EQUAL_STRING("Niko! Pancakes!", str);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }

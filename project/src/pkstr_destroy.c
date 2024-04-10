@@ -24,13 +24,13 @@
 #include "pkstr_internals.h"
 #include "pkstr_types.h"
 
-void pkstr_destroy(pkstr str)
+void pkstr_destroy(pkstr *str)
 {
     struct pkstr_header *header;
 
-    if (!str)
+    if (!str || !*str)
         return;
-    header = PKSTR_H_PTR(str);
+    header = PKSTR_H_PTR(*str);
     free(header);
 }
 

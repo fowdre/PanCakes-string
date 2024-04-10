@@ -14,7 +14,7 @@ void test_pkstr_new_fn_basic(void)
     const struct pkstr_header *header = PKSTR_H_PTR(str);
     utils_assert_pkstr_header(header, 15, 30, "Niko & pancakes");
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_new_fn_NULL(void)
@@ -25,7 +25,7 @@ void test_pkstr_new_fn_NULL(void)
     const struct pkstr_header *header = PKSTR_H_PTR(str);
     utils_assert_pkstr_header(header, 0, BASE_CAPACITY, "");
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_new_with_capacity_fn_basic(void)
@@ -36,7 +36,7 @@ void test_pkstr_new_with_capacity_fn_basic(void)
     const struct pkstr_header *header = PKSTR_H_PTR(str);
     utils_assert_pkstr_header(header, 15, 727, "Niko & pancakes");
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_new_with_capacity_fn_NULL(void)
@@ -47,7 +47,7 @@ void test_pkstr_new_with_capacity_fn_NULL(void)
     const struct pkstr_header *header = PKSTR_H_PTR(str);
     utils_assert_pkstr_header(header, 0, BASE_CAPACITY, "");
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_new_with_capacity_fn_capacity_less_than_length(void)
@@ -58,7 +58,7 @@ void test_pkstr_new_with_capacity_fn_capacity_less_than_length(void)
     const struct pkstr_header *header = PKSTR_H_PTR(str);
     utils_assert_pkstr_header(header, 15, 15, "Niko & pancakes");
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_new_with_capacity_fn_capacity_equal_length(void)
@@ -69,7 +69,7 @@ void test_pkstr_new_with_capacity_fn_capacity_equal_length(void)
     const struct pkstr_header *header = PKSTR_H_PTR(str);
     utils_assert_pkstr_header(header, 15, 15, "Niko & pancakes");
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_new_with_capacity_fn_zero_capacity(void)
@@ -80,7 +80,7 @@ void test_pkstr_new_with_capacity_fn_zero_capacity(void)
     const struct pkstr_header *header = PKSTR_H_PTR(str);
     utils_assert_pkstr_header(header, 15, BASE_CAPACITY, "Niko & pancakes");
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_new_empty_fn_basic(void)
@@ -91,7 +91,7 @@ void test_pkstr_new_empty_fn_basic(void)
     const struct pkstr_header *header = PKSTR_H_PTR(str);
     utils_assert_pkstr_header(header, 0, BASE_CAPACITY, "");
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_new_from_pkstr_fn_basic(void)
@@ -103,8 +103,8 @@ void test_pkstr_new_from_pkstr_fn_basic(void)
     const struct pkstr_header *header = PKSTR_H_PTR(str);
     utils_assert_pkstr_header(header, 15, 30, "Niko & pancakes");
 
-    pkstr_destroy(str);
-    pkstr_destroy(str1);
+    pkstr_destroy(&str);
+    pkstr_destroy(&str1);
 }
 
 void test_pkstr_new_from_pkstr_fn_NULL(void)
@@ -115,7 +115,7 @@ void test_pkstr_new_from_pkstr_fn_NULL(void)
     const struct pkstr_header *header = PKSTR_H_PTR(str);
     utils_assert_pkstr_header(header, 0, BASE_CAPACITY, "");
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_repeat_fn_basic(void)
@@ -126,7 +126,7 @@ void test_pkstr_repeat_fn_basic(void)
     const struct pkstr_header *header = PKSTR_H_PTR(str);
     utils_assert_pkstr_header(header, 21, 42, "NikoCatNikoCatNikoCat");
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_repeat_fn_NULL(void)
@@ -137,7 +137,7 @@ void test_pkstr_repeat_fn_NULL(void)
     const struct pkstr_header *header = PKSTR_H_PTR(str);
     utils_assert_pkstr_header(header, 0, BASE_CAPACITY, "");
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_repeat_fn_zero_count(void)
@@ -148,7 +148,7 @@ void test_pkstr_repeat_fn_zero_count(void)
     const struct pkstr_header *header = PKSTR_H_PTR(str);
     utils_assert_pkstr_header(header, 0, BASE_CAPACITY, "");
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_repeat_fn_zero_str(void)
@@ -159,6 +159,6 @@ void test_pkstr_repeat_fn_zero_str(void)
     const struct pkstr_header *header = PKSTR_H_PTR(str);
     utils_assert_pkstr_header(header, 0, BASE_CAPACITY, "");
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 

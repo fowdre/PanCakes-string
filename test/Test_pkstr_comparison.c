@@ -18,8 +18,8 @@ void test_pkstr_equals_fn_basic(void)
 
     TEST_ASSERT_TRUE(res);
 
-    pkstr_destroy(str);
-    pkstr_destroy(str1);
+    pkstr_destroy(&str);
+    pkstr_destroy(&str1);
 
     str = pkstr_new("Niko & pancakes");
     str1 = pkstr_new("Niko & stroby");
@@ -28,8 +28,8 @@ void test_pkstr_equals_fn_basic(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
-    pkstr_destroy(str1);
+    pkstr_destroy(&str);
+    pkstr_destroy(&str1);
 }
 
 void test_pkstr_equals_fn_NULL(void)
@@ -47,7 +47,7 @@ void test_pkstr_equals_fn_NULL(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_equals_fn_empty(void)
@@ -59,8 +59,8 @@ void test_pkstr_equals_fn_empty(void)
 
     TEST_ASSERT_TRUE(res);
 
-    pkstr_destroy(str);
-    pkstr_destroy(str1);
+    pkstr_destroy(&str);
+    pkstr_destroy(&str1);
 
     str = pkstr_new_empty();
     str1 = pkstr_new("Niko & pancakes");
@@ -69,8 +69,8 @@ void test_pkstr_equals_fn_empty(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
-    pkstr_destroy(str1);
+    pkstr_destroy(&str);
+    pkstr_destroy(&str1);
 }
 
 void test_pkstr_equals_fn_length(void)
@@ -82,8 +82,8 @@ void test_pkstr_equals_fn_length(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
-    pkstr_destroy(str1);
+    pkstr_destroy(&str);
+    pkstr_destroy(&str1);
 }
 
 void test_pkstr_equals_fn_capacity(void)
@@ -95,8 +95,8 @@ void test_pkstr_equals_fn_capacity(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
-    pkstr_destroy(str1);
+    pkstr_destroy(&str);
+    pkstr_destroy(&str1);
 }
 
 void test_pkstr_partial_fn_basic(void)
@@ -108,8 +108,8 @@ void test_pkstr_partial_fn_basic(void)
 
     TEST_ASSERT_TRUE(res);
 
-    pkstr_destroy(str);
-    pkstr_destroy(str1);
+    pkstr_destroy(&str);
+    pkstr_destroy(&str1);
 
     str = pkstr_new("Niko & pancakes");
     str1 = pkstr_new("Niko & stroby");
@@ -118,8 +118,8 @@ void test_pkstr_partial_fn_basic(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
-    pkstr_destroy(str1);
+    pkstr_destroy(&str);
+    pkstr_destroy(&str1);
 }
 
 void test_pkstr_partial_fn_NULL(void)
@@ -137,7 +137,7 @@ void test_pkstr_partial_fn_NULL(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_partial_fn_empty(void)
@@ -149,8 +149,8 @@ void test_pkstr_partial_fn_empty(void)
 
     TEST_ASSERT_TRUE(res);
 
-    pkstr_destroy(str);
-    pkstr_destroy(str1);
+    pkstr_destroy(&str);
+    pkstr_destroy(&str1);
 
     str = pkstr_new_empty();
     str1 = pkstr_new("Niko & pancakes");
@@ -159,6 +159,6 @@ void test_pkstr_partial_fn_empty(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
-    pkstr_destroy(str1);
+    pkstr_destroy(&str);
+    pkstr_destroy(&str1);
 }
