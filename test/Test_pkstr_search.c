@@ -17,7 +17,7 @@ void test_pkstr_starts_with_fn_basic(void)
 
     TEST_ASSERT_TRUE(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_starts_with_fn_NULL(void)
@@ -35,7 +35,7 @@ void test_pkstr_starts_with_fn_NULL(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_starts_with_fn_empty_literal(void)
@@ -46,7 +46,7 @@ void test_pkstr_starts_with_fn_empty_literal(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_starts_with_fn_basic_false(void)
@@ -57,7 +57,7 @@ void test_pkstr_starts_with_fn_basic_false(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_ends_with_fn_basic(void)
@@ -68,7 +68,7 @@ void test_pkstr_ends_with_fn_basic(void)
 
     TEST_ASSERT_TRUE(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_ends_with_fn_NULL(void)
@@ -86,7 +86,7 @@ void test_pkstr_ends_with_fn_NULL(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_ends_with_fn_empty_literal(void)
@@ -97,7 +97,7 @@ void test_pkstr_ends_with_fn_empty_literal(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_ends_with_fn_basic_false(void)
@@ -108,7 +108,7 @@ void test_pkstr_ends_with_fn_basic_false(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_ends_with_fn_suffix_larger_than_str(void)
@@ -124,7 +124,7 @@ void test_pkstr_ends_with_fn_suffix_larger_than_str(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_contains_fn_basic(void)
@@ -135,7 +135,7 @@ void test_pkstr_contains_fn_basic(void)
 
     TEST_ASSERT_TRUE(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_contains_fn_NULL(void)
@@ -153,7 +153,7 @@ void test_pkstr_contains_fn_NULL(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_contains_fn_empty_literal(void)
@@ -164,7 +164,7 @@ void test_pkstr_contains_fn_empty_literal(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_contains_fn_basic_false(void)
@@ -175,7 +175,7 @@ void test_pkstr_contains_fn_basic_false(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_lsearch_fn_basic(void)
@@ -186,7 +186,7 @@ void test_pkstr_lsearch_fn_basic(void)
 
     TEST_ASSERT_EQUAL(5, res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_lsearch_fn_NULL(void)
@@ -204,7 +204,7 @@ void test_pkstr_lsearch_fn_NULL(void)
 
     TEST_ASSERT_EQUAL(-1, res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_lsearch_fn_empty_literal(void)
@@ -215,7 +215,7 @@ void test_pkstr_lsearch_fn_empty_literal(void)
 
     TEST_ASSERT_EQUAL(-1, res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_lsearch_fn_basic_not_found(void)
@@ -226,7 +226,7 @@ void test_pkstr_lsearch_fn_basic_not_found(void)
 
     TEST_ASSERT_EQUAL(-1, res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_rsearch_fn_basic(void)
@@ -237,7 +237,7 @@ void test_pkstr_rsearch_fn_basic(void)
 
     TEST_ASSERT_EQUAL(23, res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_rsearch_fn_NULL(void)
@@ -255,7 +255,7 @@ void test_pkstr_rsearch_fn_NULL(void)
 
     TEST_ASSERT_EQUAL(-1, res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_rsearch_fn_empty_literal(void)
@@ -266,7 +266,7 @@ void test_pkstr_rsearch_fn_empty_literal(void)
 
     TEST_ASSERT_EQUAL(-1, res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_rsearch_fn_basic_not_found(void)
@@ -277,5 +277,5 @@ void test_pkstr_rsearch_fn_basic_not_found(void)
 
     TEST_ASSERT_EQUAL(-1, res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }

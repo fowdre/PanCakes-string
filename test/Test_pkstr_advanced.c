@@ -15,7 +15,7 @@ void test_pkstr_is_empty_fn_basic(void)
 
     TEST_ASSERT_EQUAL(false, is_empty);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_is_empty_fn_NULL(void)
@@ -33,7 +33,7 @@ void test_pkstr_is_empty_fn_empty(void)
 
     TEST_ASSERT_EQUAL(true, is_empty);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_split_fn_basic(void)
@@ -48,10 +48,10 @@ void test_pkstr_split_fn_basic(void)
     TEST_ASSERT_NULL(res[2]);
 
     for (size_t i = 0; res[i]; i++)
-        pkstr_destroy(res[i]);
+        pkstr_destroy(&res[i]);
     free(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_split_fn_NULL(void)
@@ -77,7 +77,7 @@ void test_pkstr_split_fn_empty(void)
 
     free(res);
 
-    pkstr_destroy(str);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_range_fn_basic(void)
@@ -89,8 +89,8 @@ void test_pkstr_range_fn_basic(void)
     TEST_ASSERT_NOT_NULL(str1);
     TEST_ASSERT_EQUAL_STRING("pancakes", str1);
 
-    pkstr_destroy(str1);
-    pkstr_destroy(str);
+    pkstr_destroy(&str1);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_range_fn_NULL(void)
@@ -109,8 +109,8 @@ void test_pkstr_range_fn_empty(void)
     TEST_ASSERT_NOT_NULL(str1);
     TEST_ASSERT_EQUAL_STRING("", str1);
 
-    pkstr_destroy(str1);
-    pkstr_destroy(str);
+    pkstr_destroy(&str1);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_range_fn_negative(void)
@@ -122,8 +122,8 @@ void test_pkstr_range_fn_negative(void)
     TEST_ASSERT_NOT_NULL(str1);
     TEST_ASSERT_EQUAL_STRING("pan", str1);
 
-    pkstr_destroy(str1);
-    pkstr_destroy(str);
+    pkstr_destroy(&str1);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_range_fn_start_greater_than_length(void)
@@ -135,8 +135,8 @@ void test_pkstr_range_fn_start_greater_than_length(void)
     TEST_ASSERT_NOT_NULL(str1);
     TEST_ASSERT_EQUAL_STRING("", str1);
 
-    pkstr_destroy(str1);
-    pkstr_destroy(str);
+    pkstr_destroy(&str1);
+    pkstr_destroy(&str);
 }
 
 void test_pkstr_range_fn_start_greater_than_end(void)
@@ -148,6 +148,6 @@ void test_pkstr_range_fn_start_greater_than_end(void)
     TEST_ASSERT_NOT_NULL(str1);
     TEST_ASSERT_EQUAL_STRING("", str1);
 
-    pkstr_destroy(str1);
-    pkstr_destroy(str);
+    pkstr_destroy(&str1);
+    pkstr_destroy(&str);
 }

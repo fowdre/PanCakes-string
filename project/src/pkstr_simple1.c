@@ -23,7 +23,6 @@
 #include <string.h>
 
 #include "pkstr_internals.h"
-#include "pkstr_types.h"
 
 pkstr_uint_t pkstr_len(const pkstr str)
 {

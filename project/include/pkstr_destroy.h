@@ -23,7 +23,7 @@
 
     #include "pkstr_types.h"
 
-void pkstr_destroy(pkstr str);
+void pkstr_destroy(pkstr *str);
 void pkstr_clear(pkstr str);
 
 #endif /* PKSTR_DESTROY_H */

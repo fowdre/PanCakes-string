@@ -67,14 +67,14 @@ _Minimum allowed line rate is `80%`_
 
 ### Bytes operations
 
-- [ ] pkstr_push() | push a byte to the string
-- [ ] pkstr_pop() | pop the byte from the string
-- [ ] pkstr_insert_byte() | insert a byte at the given index
-- [ ] pkstr_remove_byte() | remove the byte at the given index
-- [ ] pkstr_lfind_byte() | find a byte, starting from the left
-- [ ] pkstr_rfind_byte() | find a byte, starting from the right
-- [ ] pkstr_lremove_byte() | remove a byte, starting from the left
-- [ ] pkstr_rremove_byte() | remove a byte, starting from the right
+- [X] pkstr_push() | push a byte to the string
+- [X] pkstr_pop() | pop a byte from the string
+- [X] pkstr_insert_byte() | insert a byte at the given index
+- [X] pkstr_remove_byte() | remove the byte at the given index
+- [X] pkstr_lfind_byte() | find a byte, starting from the left
+- [X] pkstr_rfind_byte() | find a byte, starting from the right
+- [X] pkstr_lremove_byte() | remove a byte, starting from the left
+- [X] pkstr_rremove_byte() | remove a byte, starting from the right
 
 ### String conversion
 
@@ -95,13 +95,13 @@ _Minimum allowed line rate is `80%`_
 - [ ] pkstr_from_float() | convert a float into a string
 - [ ] pkstr_from_double() | convert a double into a string
 
-### String internals
+### ~~String internals~~
 
-- [ ] i_pkstr_set_buffer() | sets the buffer of the string
-- [ ] i_pkstr_set_len() | sets the length of the string
-- [ ] i_pkstr_set_capacity() | sets the capacity of the string
-- [ ] i_pkstr_get_buffer() | gets the buffer of the string
-- [ ] i_pkstr_get_len() | gets the length of the string
-- [ ] i_pkstr_get_capacity() | gets the capacity of the string
-- [ ] i_pkstr_set_header() | sets the header of the string
-- [ ] i_pkstr_get_header() | gets the header of the string
+- [ ] ~~i_pkstr_set_len() | sets the length of the string~~
+- [ ] ~~i_pkstr_set_buffer() | sets the buffer of the string~~
+- [ ] ~~i_pkstr_set_capacity() | sets the capacity of the string~~
+- [ ] ~~i_pkstr_get_buffer() | gets the buffer of the string~~
+- [ ] ~~i_pkstr_get_len() | gets the length of the string~~
+- [ ] ~~i_pkstr_get_capacity() | gets the capacity of the string~~
+- [ ] ~~i_pkstr_set_header() | sets the header of the string~~
+- [ ] ~~i_pkstr_get_header() | gets the header of the string~~

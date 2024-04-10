@@ -18,10 +18,18 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PKSTR_FULL_H
-    #define PKSTR_FULL_H
+#ifndef PKSTR_BYTE_H
+    #define PKSTR_BYTE_H
 
-    #include "pkstr_new.h"
-    #include "pkstr_destroy.h"
+    #include "pkstr_types.h"
 
-#endif /* PKSTR_FULL_H */
+void pkstr_push(pkstr *str, char byte);
+void pkstr_pop(const pkstr str);
+void pkstr_insert_byte(pkstr *str, char byte, pkstr_uint_t index);
+void pkstr_remove_byte(const pkstr str, pkstr_uint_t index);
+int pkstr_lfind_byte(const pkstr str, char byte);
+int pkstr_rfind_byte(const pkstr str, char byte);
+void pkstr_lremove_byte(const pkstr str, char byte);
+void pkstr_rremove_byte(const pkstr str, char byte);
+
+#endif /* PKSTR_BYTE_H */

@@ -23,7 +23,6 @@
 #include <string.h>
 
 #include "pkstr_internals.h"
-#include "pkstr_types.h"
 
 static bool pkstr_trim_i_byte_in_bytes(char byte, const char *bytes)
 {
