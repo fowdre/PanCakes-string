@@ -46,7 +46,9 @@ SRC_RAW		= 	\
 				pkstr_search.c	\
 				pkstr_simple1.c	\
 				pkstr_simple2.c	\
-				pkstr_advanced1.c
+				pkstr_advanced1.c	\
+				pkstr_byte1.c	\
+				pkstr_byte2.c
 
 OBJ 		= 	$(patsubst $(SRC_DIR)%.c, $(OBJECTS_DIR)%.o, $(SRC))
 
@@ -70,7 +72,9 @@ TEST_REQUIRED	=	\
 					$(SRC_DIR)pkstr_search.c	\
 					$(SRC_DIR)pkstr_simple1.c	\
 					$(SRC_DIR)pkstr_simple2.c	\
-					$(SRC_DIR)pkstr_advanced1.c
+					$(SRC_DIR)pkstr_advanced1.c	\
+					$(SRC_DIR)pkstr_byte1.c	\
+					$(SRC_DIR)pkstr_byte2.c
 
 TEST_SRC		=	\
 					test/Test_pkstr_new.c	\
@@ -78,7 +82,8 @@ TEST_SRC		=	\
 					test/Test_pkstr_comparison.c	\
 					test/Test_pkstr_search.c	\
 					test/Test_pkstr_simple.c	\
-					test/Test_pkstr_advanced.c
+					test/Test_pkstr_advanced.c	\
+					test/Test_pkstr_byte.c
 
 UNITY_SRC		=	unity/unity.c
 UNITY_INCLUDES	=	-I./unity

@@ -114,6 +114,44 @@ int main(void)
     RUN_TEST(test_pkstr_range_fn_negative);
     RUN_TEST(test_pkstr_range_fn_start_greater_than_length);
     RUN_TEST(test_pkstr_range_fn_start_greater_than_end);
+
+    // Test_pkstr_byte.c
+
+    RUN_TEST(test_pkstr_push_fn_basic);
+    RUN_TEST(test_pkstr_push_fn_NULL);
+    RUN_TEST(test_pkstr_push_fn_realloc);
+    RUN_TEST(test_pkstr_pop_fn_basic);
+    RUN_TEST(test_pkstr_pop_fn_NULL);
+    RUN_TEST(test_pkstr_pop_fn_empty);
+    RUN_TEST(test_pkstr_insert_byte_fn_basic);
+    RUN_TEST(test_pkstr_insert_byte_fn_NULL);
+    RUN_TEST(test_pkstr_insert_byte_fn_front);
+    RUN_TEST(test_pkstr_insert_byte_fn_middle);
+    RUN_TEST(test_pkstr_insert_byte_fn_back);
+    RUN_TEST(test_pkstr_insert_byte_fn_out_of_bounds);
+    RUN_TEST(test_pkstr_insert_byte_fn_realloc);
+    RUN_TEST(test_pkstr_pkstr_lfind_byte_fn_basic);
+    RUN_TEST(test_pkstr_pkstr_lfind_byte_fn_NULL);
+    RUN_TEST(test_pkstr_pkstr_lfind_byte_fn_front);
+    RUN_TEST(test_pkstr_pkstr_lfind_byte_fn_middle);
+    RUN_TEST(test_pkstr_pkstr_lfind_byte_fn_back);
+    RUN_TEST(test_pkstr_pkstr_lfind_byte_fn_not_found);
+    RUN_TEST(test_pkstr_pkstr_rfind_byte_fn_basic);
+    RUN_TEST(test_pkstr_pkstr_rfind_byte_fn_NULL);
+    RUN_TEST(test_pkstr_pkstr_rfind_byte_fn_front);
+    RUN_TEST(test_pkstr_pkstr_rfind_byte_fn_middle);
+    RUN_TEST(test_pkstr_pkstr_rfind_byte_fn_back);
+    RUN_TEST(test_pkstr_pkstr_rfind_byte_fn_not_found);
+    RUN_TEST(test_pkstr_remove_byte_fn_basic);
+    RUN_TEST(test_pkstr_remove_byte_fn_NULL);
+    RUN_TEST(test_pkstr_remove_byte_fn_out_of_bounds);
+    RUN_TEST(test_pkstr_remove_byte_fn_empty);
+    RUN_TEST(test_pkstr_lremove_byte_fn_basic);
+    RUN_TEST(test_pkstr_lremove_byte_fn_NULL);
+    RUN_TEST(test_pkstr_lremove_byte_fn_not_found);
+    RUN_TEST(test_pkstr_rremove_byte_fn_basic);
+    RUN_TEST(test_pkstr_rremove_byte_fn_NULL);
+    RUN_TEST(test_pkstr_rremove_byte_fn_not_found);
     
     return UNITY_END();
 }
