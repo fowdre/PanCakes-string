@@ -42,9 +42,10 @@ int pkstr_rfind_byte(const pkstr str, char byte)
     if (str == NULL)
         return -1;
     header = PKSTR_H_PTR(str);
-    for (pkstr_uint_t i = header->length - 1; i > 0; i--)
+    for (pkstr_uint_t i = header->length; i > 0; i--) {
         if (str[i - 1] == byte)
             return i - 1;
+    }
     return -1;
 }
 
@@ -87,7 +88,7 @@ void pkstr_rremove_byte(const pkstr str, char byte)
     if (str == NULL)
         return;
     header = PKSTR_H_PTR(str);
-    for (pkstr_uint_t i = header->length - 1; i > 0; i--) {
+    for (pkstr_uint_t i = header->length; i > 0; i--) {
         if (str[i - 1] == byte) {
             pkstr_remove_byte(str, i - 1);
             return;
