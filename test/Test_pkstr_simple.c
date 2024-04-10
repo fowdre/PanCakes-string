@@ -36,7 +36,6 @@ void test_pkstr_cat_fn_basic(void)
     pkstr_cat(&str, str1);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 24, 30, "Niko & pancakes & stroby");
 
     pkstr_destroy(str1);
@@ -51,7 +50,6 @@ void test_pkstr_cat_fn_NULL(void)
     pkstr_cat(&str, NULL);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 15, 30, "Niko & pancakes");
 
     pkstr_cat(NULL, str);
@@ -67,7 +65,6 @@ void test_pkstr_cat_fn_realloc(void)
     pkstr_cat(&str, str1);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 24, 48, "Niko & pancakes & stroby");
 
     pkstr_destroy(str1);
@@ -81,7 +78,6 @@ void test_pkstr_ncat_fn_basic(void)
     pkstr_ncat(&str, " & stroby & pancakes", 9);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 24, 30, "Niko & pancakes & stroby");
 
     pkstr_destroy(str);
@@ -96,7 +92,6 @@ void test_pkstr_ncat_fn_NULL(void)
     pkstr_ncat(&str, NULL, 1);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 15, 30, "Niko & pancakes");
 
     pkstr_ncat(NULL, str, 1);
@@ -111,7 +106,6 @@ void test_pkstr_ncat_fn_realloc(void)
     pkstr_ncat(&str, " & pancakes & stroby", 11);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 26, 30, "Niko & pancakes & pancakes");
 
     pkstr_destroy(str);
@@ -125,7 +119,6 @@ void test_pkstr_insert_fn_basic(void)
     pkstr_insert(&str, str1, 4);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 24, 30, "Niko & stroby & pancakes");
 
     pkstr_destroy(str1);
@@ -140,7 +133,6 @@ void test_pkstr_insert_fn_NULL(void)
     pkstr_insert(&str, NULL, 0);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 15, 30, "Niko & pancakes");
 
     pkstr_insert(NULL, str, 0);
@@ -156,7 +148,6 @@ void test_pkstr_insert_fn_larger_index(void)
     pkstr_insert(&str, str1, 727);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 24, 30, "Niko & pancakes & stroby");
 
     pkstr_destroy(str1);
@@ -171,7 +162,6 @@ void test_pkstr_insert_fn_realloc(void)
     pkstr_insert(&str, str1, 4);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 24, 48, "Niko & pancakes & stroby");
 
     pkstr_destroy(str1);
@@ -186,7 +176,6 @@ void test_pkstr_trim_start_fn_basic(void)
     pkstr_trim_start(str, str1);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 15, 30, "o & pancakes");
 
     pkstr_destroy(str);
@@ -196,7 +185,6 @@ void test_pkstr_trim_start_fn_basic(void)
     pkstr_trim_start(str, str1);
 
     header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 15, 30, "o & pancakes");
 
     pkstr_destroy(str1);
@@ -211,7 +199,6 @@ void test_pkstr_trim_start_fn_NULL(void)
     pkstr_trim_start(str, NULL);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 15, 30, "Niko & pancakes");
 
     pkstr_trim_start(NULL, str);
@@ -227,7 +214,6 @@ void test_pkstr_trim_start_fn_no_trim(void)
     pkstr_trim_start(str, str1);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 15, 30, "Niko & pancakes");
 
     pkstr_destroy(str1);
@@ -243,7 +229,6 @@ void test_pkstr_trim_start_fn_all_trim(void)
     pkstr_trim_start(str, str1);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 15, 30, "");
 
     pkstr_destroy(str1);
@@ -257,7 +242,6 @@ void test_pkstr_trim_end_fn_basic(void)
     pkstr_trim_end(str, "kes");
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 12, 30, "Niko & panca");
 
     pkstr_destroy(str);
@@ -267,7 +251,6 @@ void test_pkstr_trim_end_fn_basic(void)
     pkstr_trim_end(str, "kse");
 
     header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 12, 30, "Niko & panca");
 
     pkstr_destroy(str);
@@ -281,7 +264,6 @@ void test_pkstr_trim_end_fn_NULL(void)
     pkstr_trim_end(str, NULL);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 15, 30, "Niko & pancakes");
 
     pkstr_trim_end(NULL, str);
@@ -296,7 +278,6 @@ void test_pkstr_trim_end_fn_all_trim(void)
     pkstr_trim_end(str, "Niko & pancakes");
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 0, 30, "");
 
     pkstr_destroy(str);
@@ -309,7 +290,6 @@ void test_pkstr_remove_fn_basic(void)
     pkstr_remove(str, 5, 14);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 15, 48, "Niko & pancakes");
 
     pkstr_destroy(str);
@@ -324,7 +304,6 @@ void test_pkstr_remove_fn_NULL(void)
     pkstr_remove(str, 0, 0);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 15, 30, "Niko & pancakes");
 
     pkstr_remove(NULL, 0, 0);
@@ -339,7 +318,6 @@ void test_pkstr_remove_fn_start_greater_than_length(void)
     pkstr_remove(str, 727, 727);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 15, 30, "Niko & pancakes");
 
     pkstr_destroy(str);
@@ -352,7 +330,6 @@ void test_pkstr_remove_fn_end_greater_than_length(void)
     pkstr_remove(str, 0, 727);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 0, 30, "");
 
     pkstr_destroy(str);
@@ -365,7 +342,6 @@ void test_pkstr_remove_fn_start_greater_than_end(void)
     pkstr_remove(str, 5, 4);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 15, 30, "Niko & pancakes");
 
     pkstr_destroy(str);
@@ -378,7 +354,6 @@ void test_pkstr_to_upper_fn_basic(void)
     pkstr_to_upper(str);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 16, 32, "NIKO & PANCAKES{");
 
     pkstr_destroy(str);
@@ -396,7 +371,6 @@ void test_pkstr_to_lower_fn_basic(void)
     pkstr_to_lower(str);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 15, 30, "niko & pancakes");
 
     pkstr_destroy(str);

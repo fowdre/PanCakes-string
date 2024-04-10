@@ -24,7 +24,6 @@ void test_pkstr_pkstr_clear_fn_basic(void)
     pkstr_clear(str);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
-    utils_print_pkstr_header(header);
     utils_assert_pkstr_header(header, 0, 30, "");
 
     pkstr_destroy(str);

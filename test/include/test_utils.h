@@ -117,4 +117,42 @@
     void test_pkstr_range_fn_start_greater_than_length(void);
     void test_pkstr_range_fn_start_greater_than_end(void);
 
+    // Test_pkstr_byte.c
+
+    void test_pkstr_push_fn_basic(void);
+    void test_pkstr_push_fn_NULL(void);
+    void test_pkstr_push_fn_realloc(void);
+    void test_pkstr_pop_fn_basic(void);
+    void test_pkstr_pop_fn_NULL(void);
+    void test_pkstr_pop_fn_empty(void);
+    void test_pkstr_insert_byte_fn_basic(void);
+    void test_pkstr_insert_byte_fn_NULL(void);
+    void test_pkstr_insert_byte_fn_front(void);
+    void test_pkstr_insert_byte_fn_middle(void);
+    void test_pkstr_insert_byte_fn_back(void);
+    void test_pkstr_insert_byte_fn_out_of_bounds(void);
+    void test_pkstr_insert_byte_fn_realloc(void);
+    void test_pkstr_pkstr_lfind_byte_fn_basic(void);
+    void test_pkstr_pkstr_lfind_byte_fn_NULL(void);
+    void test_pkstr_pkstr_lfind_byte_fn_front(void);
+    void test_pkstr_pkstr_lfind_byte_fn_middle(void);
+    void test_pkstr_pkstr_lfind_byte_fn_back(void);
+    void test_pkstr_pkstr_lfind_byte_fn_not_found(void);
+    void test_pkstr_pkstr_rfind_byte_fn_basic(void);
+    void test_pkstr_pkstr_rfind_byte_fn_NULL(void);
+    void test_pkstr_pkstr_rfind_byte_fn_front(void);
+    void test_pkstr_pkstr_rfind_byte_fn_middle(void);
+    void test_pkstr_pkstr_rfind_byte_fn_back(void);
+    void test_pkstr_pkstr_rfind_byte_fn_not_found(void);
+    void test_pkstr_remove_byte_fn_basic(void);
+    void test_pkstr_remove_byte_fn_NULL(void);
+    void test_pkstr_remove_byte_fn_out_of_bounds(void);
+    void test_pkstr_remove_byte_fn_empty(void);
+    void test_pkstr_lremove_byte_fn_basic(void);
+    void test_pkstr_lremove_byte_fn_NULL(void);
+    void test_pkstr_lremove_byte_fn_not_found(void);
+    void test_pkstr_rremove_byte_fn_basic(void);
+    void test_pkstr_rremove_byte_fn_NULL(void);
+    void test_pkstr_rremove_byte_fn_not_found(void);
+
 #endif /* TEST_UTILS_H */
