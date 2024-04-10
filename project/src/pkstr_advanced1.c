@@ -22,7 +22,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "pkstr_types.h"
 #include "pkstr_internals.h"
 #include "pkstr_new.h"
 #include "pkstr_destroy.h"

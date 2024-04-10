@@ -24,7 +24,6 @@
 #include <string.h>
 
 #include "pkstr_internals.h"
-#include "pkstr_types.h"
 
 pkstr_uint_t i_pkstr_recompute_capacity(pkstr_uint_t value)
 {
