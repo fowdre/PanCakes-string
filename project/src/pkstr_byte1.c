@@ -22,7 +22,7 @@
 
 #include "pkstr_internals.h"
 
-void pkstr_push(pkstr *str, char byte)
+void pkstr_push(pkstr_t *str, char byte)
 {
     struct pkstr_header *header;
     pkstr_uint_t new_length;
@@ -41,7 +41,7 @@ void pkstr_push(pkstr *str, char byte)
     header->length = new_length;
 }
 
-void pkstr_pop(const pkstr str)
+void pkstr_pop(const pkstr_t str)
 {
     struct pkstr_header *header;
 
@@ -54,7 +54,7 @@ void pkstr_pop(const pkstr str)
     header->length--;
 }
 
-void pkstr_insert_byte(pkstr *str, char byte, pkstr_uint_t index)
+void pkstr_insert_byte(pkstr_t *str, char byte, pkstr_uint_t index)
 {
     struct pkstr_header *header;
     pkstr_uint_t new_length;

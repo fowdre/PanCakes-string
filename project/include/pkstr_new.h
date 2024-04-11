@@ -23,10 +23,10 @@
 
     #include "pkstr_types.h"
 
-pkstr pkstr_new(const char *str);
-pkstr pkstr_new_with_capacity(const char *str, pkstr_uint_t capacity);
-pkstr pkstr_new_empty(void);
-pkstr pkstr_new_from_pkstr(const pkstr str);
-pkstr pkstr_repeat(const char *str, pkstr_uint_t count);
+pkstr_t pkstr_new(const char *str);
+pkstr_t pkstr_new_with_capacity(const char *str, pkstr_uint_t capacity);
+pkstr_t pkstr_new_empty(void);
+pkstr_t pkstr_new_from_pkstr(const pkstr_t str);
+pkstr_t pkstr_repeat(const char *str, pkstr_uint_t count);
 
 #endif /* PKSTR_NEW_H */

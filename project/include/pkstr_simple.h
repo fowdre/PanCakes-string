@@ -23,15 +23,15 @@
 
     #include "pkstr_types.h"
 
-pkstr_uint_t pkstr_len(const pkstr str);
-void pkstr_cat(pkstr *str1, const pkstr str2);
-void pkstr_ncat(pkstr *str1, const pkstr str2, pkstr_uint_t n);
-void pkstr_insert(pkstr *str1, const pkstr str2, pkstr_uint_t index);
-void pkstr_trim_start(pkstr str, const char *bytes);
-void pkstr_trim_end(pkstr str, const char *bytes);
+pkstr_uint_t pkstr_len(const pkstr_t str);
+void pkstr_cat(pkstr_t *str1, const pkstr_t str2);
+void pkstr_ncat(pkstr_t *str1, const pkstr_t str2, pkstr_uint_t n);
+void pkstr_insert(pkstr_t *str1, const pkstr_t str2, pkstr_uint_t index);
+void pkstr_trim_start(pkstr_t str, const char *bytes);
+void pkstr_trim_end(pkstr_t str, const char *bytes);
 void pkstr_remove(
-    const pkstr str, pkstr_uint_t index_start, pkstr_uint_t index_end);
-void pkstr_to_upper(const pkstr str);
-void pkstr_to_lower(const pkstr str);
+    const pkstr_t str, pkstr_uint_t index_start, pkstr_uint_t index_end);
+void pkstr_to_upper(const pkstr_t str);
+void pkstr_to_lower(const pkstr_t str);
 
 #endif /* PKSTR_SIMPLE_H */

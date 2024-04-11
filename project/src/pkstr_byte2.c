@@ -22,7 +22,7 @@
 
 #include "pkstr_internals.h"
 
-int pkstr_lfind_byte(const pkstr str, char byte)
+int pkstr_lfind_byte(const pkstr_t str, char byte)
 {
     const struct pkstr_header *header;
 
@@ -35,7 +35,7 @@ int pkstr_lfind_byte(const pkstr str, char byte)
     return -1;
 }
 
-int pkstr_rfind_byte(const pkstr str, char byte)
+int pkstr_rfind_byte(const pkstr_t str, char byte)
 {
     const struct pkstr_header *header;
 
@@ -49,7 +49,7 @@ int pkstr_rfind_byte(const pkstr str, char byte)
     return -1;
 }
 
-void pkstr_remove_byte(const pkstr str, pkstr_uint_t index)
+void pkstr_remove_byte(const pkstr_t str, pkstr_uint_t index)
 {
     struct pkstr_header *header;
 
@@ -66,7 +66,7 @@ void pkstr_remove_byte(const pkstr str, pkstr_uint_t index)
     header->length--;
 }
 
-void pkstr_lremove_byte(const pkstr str, char byte)
+void pkstr_lremove_byte(const pkstr_t str, char byte)
 {
     const struct pkstr_header *header;
 
@@ -81,7 +81,7 @@ void pkstr_lremove_byte(const pkstr str, char byte)
     }
 }
 
-void pkstr_rremove_byte(const pkstr str, char byte)
+void pkstr_rremove_byte(const pkstr_t str, char byte)
 {
     const struct pkstr_header *header;
 

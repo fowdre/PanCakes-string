@@ -64,7 +64,7 @@ char *pkstr_new_with_capacity(const char *str, pkstr_uint_t capacity)
     return new_str;
 }
 
-pkstr pkstr_new_from_pkstr(const pkstr str)
+pkstr_t pkstr_new_from_pkstr(const pkstr_t str)
 {
     const struct pkstr_header *header = PKSTR_H_PTR(str);
 
@@ -74,7 +74,7 @@ pkstr pkstr_new_from_pkstr(const pkstr str)
         header->length, header->capacity, header->buffer);
 }
 
-pkstr pkstr_repeat(const char *str, pkstr_uint_t count)
+pkstr_t pkstr_repeat(const char *str, pkstr_uint_t count)
 {
     pkstr_uint_t len = 0;
     pkstr_uint_t capacity = 0;

@@ -63,6 +63,6 @@ struct PKSTR_PACKED pkstr_header {
     char buffer[];
 };
 
-typedef char *pkstr;
+typedef char *pkstr_t;
 
 #endif /* PKSTR_TYPES_H */

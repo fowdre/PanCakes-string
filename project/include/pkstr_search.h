@@ -26,10 +26,10 @@
 
     #include "pkstr_types.h"
 
-bool pkstr_starts_with(const pkstr str, const char *prefix);
-bool pkstr_ends_with(const pkstr str, const char *suffix);
-bool pkstr_contains(const pkstr str, const char *substr);
-ssize_t pkstr_lsearch(const pkstr str, const char *substr);
-ssize_t pkstr_rsearch(const pkstr str, const char *substr);
+bool pkstr_starts_with(const pkstr_t str, const char *prefix);
+bool pkstr_ends_with(const pkstr_t str, const char *suffix);
+bool pkstr_contains(const pkstr_t str, const char *substr);
+ssize_t pkstr_lsearch(const pkstr_t str, const char *substr);
+ssize_t pkstr_rsearch(const pkstr_t str, const char *substr);
 
 #endif /* PKSTR_SEARCH_H */

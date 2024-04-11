@@ -32,7 +32,7 @@ static bool pkstr_trim_i_byte_in_bytes(char byte, const char *bytes)
     return false;
 }
 
-void pkstr_trim_start(const pkstr str, const char *bytes)
+void pkstr_trim_start(const pkstr_t str, const char *bytes)
 {
     const struct pkstr_header *header;
     pkstr_uint_t bytes_to_trim = 0;
@@ -52,7 +52,7 @@ void pkstr_trim_start(const pkstr str, const char *bytes)
     memset(str + header->length - bytes_to_trim, 0, bytes_to_trim);
 }
 
-void pkstr_trim_end(const pkstr str, const char *bytes)
+void pkstr_trim_end(const pkstr_t str, const char *bytes)
 {
     struct pkstr_header *header;
     pkstr_uint_t bytes_to_trim = 0;
@@ -71,7 +71,7 @@ void pkstr_trim_end(const pkstr str, const char *bytes)
 }
 
 void pkstr_remove(
-    const pkstr str, pkstr_uint_t index_start, pkstr_uint_t index_end)
+    const pkstr_t str, pkstr_uint_t index_start, pkstr_uint_t index_end)
 {
     struct pkstr_header *header;
     pkstr_uint_t new_length = 0;
@@ -91,7 +91,7 @@ void pkstr_remove(
     memset(str + header->length, 0, index_end - index_start);
 }
 
-void pkstr_to_upper(const pkstr str)
+void pkstr_to_upper(const pkstr_t str)
 {
     if (str == NULL)
         return;
@@ -100,7 +100,7 @@ void pkstr_to_upper(const pkstr str)
             str[i] -= 32;
 }
 
-void pkstr_to_lower(const pkstr str)
+void pkstr_to_lower(const pkstr_t str)
 {
     if (str == NULL)
         return;
