@@ -24,14 +24,14 @@
 
 #include "pkstr_internals.h"
 
-pkstr_uint_t pkstr_len(const pkstr str)
+pkstr_uint_t pkstr_len(const pkstr_t str)
 {
     if (str == NULL)
         return 0;
     return PKSTR_H_PTR(str)->length;
 }
 
-void pkstr_cat(pkstr *str1, const pkstr str2)
+void pkstr_cat(pkstr_t *str1, const pkstr_t str2)
 {
     pkstr_uint_t new_length = 0;
     struct pkstr_header *header1;
@@ -52,7 +52,7 @@ void pkstr_cat(pkstr *str1, const pkstr str2)
     header1->length = new_length;
 }
 
-void pkstr_ncat(pkstr *str1, const pkstr str2, pkstr_uint_t n)
+void pkstr_ncat(pkstr_t *str1, const pkstr_t str2, pkstr_uint_t n)
 {
     pkstr_uint_t new_length = 0;
     struct pkstr_header *header1;
@@ -73,7 +73,7 @@ void pkstr_ncat(pkstr *str1, const pkstr str2, pkstr_uint_t n)
     header1->length = new_length;
 }
 
-void pkstr_insert(pkstr *str1, const pkstr str2, pkstr_uint_t index)
+void pkstr_insert(pkstr_t *str1, const pkstr_t str2, pkstr_uint_t index)
 {
     pkstr_uint_t new_length = 0;
     struct pkstr_header *h1;

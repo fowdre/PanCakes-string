@@ -35,6 +35,6 @@ char *i_pkstr_new_from_raw_parts(
     pkstr_uint_t len, pkstr_uint_t capacity, const char *str);
 struct pkstr_header *i_pkstr_header_new(
     pkstr_uint_t len, pkstr_uint_t capacity, const char *str);
-pkstr i_pkstr_get_new_extend(pkstr str, pkstr_uint_t new_capacity);
+pkstr_t i_pkstr_get_new_extend(pkstr_t str, pkstr_uint_t new_capacity);
 
 #endif /* PKSTR_INTERNALS_H */

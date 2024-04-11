@@ -25,7 +25,7 @@
 
     #include "pkstr_types.h"
 
-bool pkstr_equals(const pkstr pkstr1, const pkstr pkstr2);
-bool pkstr_partial_equals(const pkstr pkstr1, const pkstr pkstr2);
+bool pkstr_equals(const pkstr_t pkstr1, const pkstr_t pkstr2);
+bool pkstr_partial_equals(const pkstr_t pkstr1, const pkstr_t pkstr2);
 
 #endif /* PKSTR_COMPARISON_H */

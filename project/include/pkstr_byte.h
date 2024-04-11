@@ -23,13 +23,13 @@
 
     #include "pkstr_types.h"
 
-void pkstr_push(pkstr *str, char byte);
-void pkstr_pop(const pkstr str);
-void pkstr_insert_byte(pkstr *str, char byte, pkstr_uint_t index);
-void pkstr_remove_byte(const pkstr str, pkstr_uint_t index);
-int pkstr_lfind_byte(const pkstr str, char byte);
-int pkstr_rfind_byte(const pkstr str, char byte);
-void pkstr_lremove_byte(const pkstr str, char byte);
-void pkstr_rremove_byte(const pkstr str, char byte);
+void pkstr_push(pkstr_t *str, char byte);
+void pkstr_pop(const pkstr_t str);
+void pkstr_insert_byte(pkstr_t *str, char byte, pkstr_uint_t index);
+void pkstr_remove_byte(const pkstr_t str, pkstr_uint_t index);
+int pkstr_lfind_byte(const pkstr_t str, char byte);
+int pkstr_rfind_byte(const pkstr_t str, char byte);
+void pkstr_lremove_byte(const pkstr_t str, char byte);
+void pkstr_rremove_byte(const pkstr_t str, char byte);
 
 #endif /* PKSTR_BYTE_H */

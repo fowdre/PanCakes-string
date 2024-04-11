@@ -31,7 +31,7 @@ struct str_cpy_info {
     char *p;
 };
 
-bool pkstr_is_empty(const pkstr str)
+bool pkstr_is_empty(const pkstr_t str)
 {
     const struct pkstr_header *header;
 
@@ -41,7 +41,7 @@ bool pkstr_is_empty(const pkstr str)
     return header->length == 0;
 }
 
-static bool pkstr_split_i_realloc_failure_cleanup(pkstr *pkstr_array,
+static bool pkstr_split_i_realloc_failure_cleanup(pkstr_t *pkstr_array,
     size_t pkstr_array_size, char *cpy_p)
 {
     free(cpy_p);
@@ -51,14 +51,14 @@ static bool pkstr_split_i_realloc_failure_cleanup(pkstr *pkstr_array,
     return false;
 }
 
-static bool pkstr_split_i_loop(pkstr **result,
+static bool pkstr_split_i_loop(pkstr_t **result,
     size_t *arr_size, const char *bytes, struct str_cpy_info* str_cpy_info)
 {
     const char *token = strtok_r(str_cpy_info->str, bytes, &str_cpy_info->str);
-    pkstr *tmp;
+    pkstr_t *tmp;
 
     while (token != NULL) {
-        tmp = realloc(*result, sizeof(pkstr) * (*arr_size + 1));
+        tmp = realloc(*result, sizeof(pkstr_t) * (*arr_size + 1));
         if (tmp == NULL) {
             pkstr_split_i_realloc_failure_cleanup(
                 *result, *arr_size, str_cpy_info->p);
@@ -73,9 +73,9 @@ static bool pkstr_split_i_loop(pkstr **result,
 }
 
 static bool pkstr_split_i_null_append(
-    pkstr **result, size_t arr_size, char *cpy_p)
+    pkstr_t **result, size_t arr_size, char *cpy_p)
 {
-    pkstr *tmp = realloc(*result, sizeof(pkstr) * (arr_size + 1));
+    pkstr_t *tmp = realloc(*result, sizeof(pkstr_t) * (arr_size + 1));
 
     if (tmp == NULL) {
         pkstr_split_i_realloc_failure_cleanup(*result, arr_size, cpy_p);
@@ -86,11 +86,11 @@ static bool pkstr_split_i_null_append(
     return true;
 }
 
-pkstr* pkstr_split(const pkstr str, const char *bytes)
+pkstr_t *pkstr_split(const pkstr_t str, const char *bytes)
 {
     char *str_cpy;
     char *cpy_p;
-    pkstr *result = NULL;
+    pkstr_t *result = NULL;
     size_t arr_size = 0;
 
     if (str == NULL || bytes == NULL)
@@ -123,10 +123,10 @@ static void pkstr_range_i_checks(
         *start = *end;
 }
 
-pkstr pkstr_range(const pkstr str, int64_t start, int64_t end)
+pkstr_t pkstr_range(const pkstr_t str, int64_t start, int64_t end)
 {
     const struct pkstr_header *header;
-    pkstr result;
+    pkstr_t result;
     pkstr_uint_t result_len;
 
     if (str == NULL)

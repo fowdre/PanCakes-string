@@ -24,7 +24,7 @@
 #include "pkstr_internals.h"
 #include "pkstr_types.h"
 
-void pkstr_destroy(pkstr *str)
+void pkstr_destroy(pkstr_t *str)
 {
     struct pkstr_header *header;
 
@@ -34,7 +34,7 @@ void pkstr_destroy(pkstr *str)
     free(header);
 }
 
-void pkstr_clear(pkstr str)
+void pkstr_clear(pkstr_t str)
 {
     struct pkstr_header *header;
 

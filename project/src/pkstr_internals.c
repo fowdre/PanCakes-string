@@ -62,7 +62,7 @@ char *i_pkstr_new_from_raw_parts(
     return new_header->buffer;
 }
 
-pkstr i_pkstr_get_new_extend(pkstr str, pkstr_uint_t new_capacity)
+pkstr_t i_pkstr_get_new_extend(pkstr_t str, pkstr_uint_t new_capacity)
 {
     struct pkstr_header *header;
     struct pkstr_header *new_header;

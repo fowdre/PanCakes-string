@@ -25,8 +25,8 @@
 
     #include "pkstr_types.h"
 
-bool pkstr_is_empty(const pkstr str);
-pkstr *pkstr_split(const pkstr str, const char *bytes);
-pkstr pkstr_range(const pkstr str, int64_t start, int64_t end);
+bool pkstr_is_empty(const pkstr_t str);
+pkstr_t *pkstr_split(const pkstr_t str, const char *bytes);
+pkstr_t pkstr_range(const pkstr_t str, int64_t start, int64_t end);
 
 #endif /* PKSTR_ADVANCED_H */

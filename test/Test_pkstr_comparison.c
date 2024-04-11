@@ -11,8 +11,8 @@
 
 void test_pkstr_equals_fn_basic(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
-    pkstr str1 = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
+    pkstr_t str1 = pkstr_new("Niko & pancakes");
 
     bool res = pkstr_equals(str, str1);
 
@@ -38,7 +38,7 @@ void test_pkstr_equals_fn_NULL(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
     res = pkstr_equals(str, NULL);
 
     TEST_ASSERT_FALSE(res);
@@ -52,8 +52,8 @@ void test_pkstr_equals_fn_NULL(void)
 
 void test_pkstr_equals_fn_empty(void)
 {
-    pkstr str = pkstr_new_empty();
-    pkstr str1 = pkstr_new_empty();
+    pkstr_t str = pkstr_new_empty();
+    pkstr_t str1 = pkstr_new_empty();
 
     bool res = pkstr_equals(str, str1);
 
@@ -75,8 +75,8 @@ void test_pkstr_equals_fn_empty(void)
 
 void test_pkstr_equals_fn_length(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
-    pkstr str1 = pkstr_new("Niko & pancakes & stroby");
+    pkstr_t str = pkstr_new("Niko & pancakes");
+    pkstr_t str1 = pkstr_new("Niko & pancakes & stroby");
 
     bool res = pkstr_equals(str, str1);
 
@@ -88,8 +88,8 @@ void test_pkstr_equals_fn_length(void)
 
 void test_pkstr_equals_fn_capacity(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
-    pkstr str1 = pkstr_new_with_capacity("Niko & pancakes", 727);
+    pkstr_t str = pkstr_new("Niko & pancakes");
+    pkstr_t str1 = pkstr_new_with_capacity("Niko & pancakes", 727);
 
     bool res = pkstr_equals(str, str1);
 
@@ -101,8 +101,8 @@ void test_pkstr_equals_fn_capacity(void)
 
 void test_pkstr_partial_fn_basic(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
-    pkstr str1 = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
+    pkstr_t str1 = pkstr_new("Niko & pancakes");
 
     bool res = pkstr_partial_equals(str, str1);
 
@@ -128,7 +128,7 @@ void test_pkstr_partial_fn_NULL(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
     res = pkstr_partial_equals(str, NULL);
 
     TEST_ASSERT_FALSE(res);
@@ -142,8 +142,8 @@ void test_pkstr_partial_fn_NULL(void)
 
 void test_pkstr_partial_fn_empty(void)
 {
-    pkstr str = pkstr_new_empty();
-    pkstr str1 = pkstr_new_empty();
+    pkstr_t str = pkstr_new_empty();
+    pkstr_t str1 = pkstr_new_empty();
 
     bool res = pkstr_partial_equals(str, str1);
 

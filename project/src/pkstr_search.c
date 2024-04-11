@@ -25,7 +25,7 @@
 
 #include "pkstr_internals.h"
 
-bool pkstr_starts_with(const pkstr str, const char *prefix)
+bool pkstr_starts_with(const pkstr_t str, const char *prefix)
 {
     size_t prefix_len;
 
@@ -37,7 +37,7 @@ bool pkstr_starts_with(const pkstr str, const char *prefix)
     return strncmp(str, prefix, prefix_len) == 0;
 }
 
-bool pkstr_ends_with(const pkstr str, const char *suffix)
+bool pkstr_ends_with(const pkstr_t str, const char *suffix)
 {
     pkstr_uint_t str_len;
     size_t suffix_len;
@@ -53,7 +53,7 @@ bool pkstr_ends_with(const pkstr str, const char *suffix)
     return strncmp(str + str_len - suffix_len, suffix, suffix_len) == 0;
 }
 
-bool pkstr_contains(const pkstr str, const char *substr)
+bool pkstr_contains(const pkstr_t str, const char *substr)
 {
     size_t substr_len;
 
@@ -65,7 +65,7 @@ bool pkstr_contains(const pkstr str, const char *substr)
     return strstr(str, substr) != NULL;
 }
 
-ssize_t pkstr_lsearch(const pkstr str, const char *substr)
+ssize_t pkstr_lsearch(const pkstr_t str, const char *substr)
 {
     const char *result;
     size_t substr_len;
@@ -81,7 +81,7 @@ ssize_t pkstr_lsearch(const pkstr str, const char *substr)
     return result - str;
 }
 
-ssize_t pkstr_rsearch(const pkstr str, const char *substr)
+ssize_t pkstr_rsearch(const pkstr_t str, const char *substr)
 {
     const char *strstr_res;
     const char *str_ptr = str;

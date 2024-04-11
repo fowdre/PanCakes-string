@@ -23,14 +23,14 @@
 
 #include "pkstr_internals.h"
 
-bool pkstr_partial_equals(const pkstr str1, const pkstr str2)
+bool pkstr_partial_equals(const pkstr_t str1, const pkstr_t str2)
 {
     if (str1 == NULL || str2 == NULL)
         return false;
     return strcmp(str1, str2) == 0;
 }
 
-bool pkstr_equals(const pkstr str1, const pkstr str2)
+bool pkstr_equals(const pkstr_t str1, const pkstr_t str2)
 {
     const struct pkstr_header *header1;
     const struct pkstr_header *header2;

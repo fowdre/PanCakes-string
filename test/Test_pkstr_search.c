@@ -11,7 +11,7 @@
 
 void test_pkstr_starts_with_fn_basic(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
 
     bool res = pkstr_starts_with(str, "Niko");
 
@@ -26,7 +26,7 @@ void test_pkstr_starts_with_fn_NULL(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
     res = pkstr_starts_with(str, NULL);
 
     TEST_ASSERT_FALSE(res);
@@ -40,7 +40,7 @@ void test_pkstr_starts_with_fn_NULL(void)
 
 void test_pkstr_starts_with_fn_empty_literal(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
 
     bool res = pkstr_starts_with(str, "");
 
@@ -51,7 +51,7 @@ void test_pkstr_starts_with_fn_empty_literal(void)
 
 void test_pkstr_starts_with_fn_basic_false(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
 
     bool res = pkstr_starts_with(str, "pancakes");
 
@@ -62,7 +62,7 @@ void test_pkstr_starts_with_fn_basic_false(void)
 
 void test_pkstr_ends_with_fn_basic(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
 
     bool res = pkstr_ends_with(str, "pancakes");
 
@@ -77,7 +77,7 @@ void test_pkstr_ends_with_fn_NULL(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
     res = pkstr_ends_with(str, NULL);
 
     TEST_ASSERT_FALSE(res);
@@ -91,7 +91,7 @@ void test_pkstr_ends_with_fn_NULL(void)
 
 void test_pkstr_ends_with_fn_empty_literal(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
 
     bool res = pkstr_ends_with(str, "");
 
@@ -102,7 +102,7 @@ void test_pkstr_ends_with_fn_empty_literal(void)
 
 void test_pkstr_ends_with_fn_basic_false(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
 
     bool res = pkstr_ends_with(str, "Niko");
 
@@ -118,7 +118,7 @@ void test_pkstr_ends_with_fn_suffix_larger_than_str(void)
     // If the suffix is larger than the string then `str + str_len - suffix_len` will be a negative value.
     // And the result would be undefined behavior.
     
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
 
     bool res = pkstr_ends_with(str, "Niko & pancakes & Niko & pancakes");
 
@@ -129,7 +129,7 @@ void test_pkstr_ends_with_fn_suffix_larger_than_str(void)
 
 void test_pkstr_contains_fn_basic(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes & Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes & Niko & pancakes");
 
     bool res = pkstr_contains(str, "pancakes");
 
@@ -144,7 +144,7 @@ void test_pkstr_contains_fn_NULL(void)
 
     TEST_ASSERT_FALSE(res);
 
-    pkstr str = pkstr_new("Niko & pancakes & Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes & Niko & pancakes");
     res = pkstr_contains(str, NULL);
 
     TEST_ASSERT_FALSE(res);
@@ -158,7 +158,7 @@ void test_pkstr_contains_fn_NULL(void)
 
 void test_pkstr_contains_fn_empty_literal(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes & Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes & Niko & pancakes");
 
     bool res = pkstr_contains(str, "");
 
@@ -169,7 +169,7 @@ void test_pkstr_contains_fn_empty_literal(void)
 
 void test_pkstr_contains_fn_basic_false(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes & Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes & Niko & pancakes");
 
     bool res = pkstr_contains(str, "stroby");
 
@@ -180,7 +180,7 @@ void test_pkstr_contains_fn_basic_false(void)
 
 void test_pkstr_lsearch_fn_basic(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes & Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes & Niko & pancakes");
 
     size_t res = pkstr_lsearch(str, "& pancakes");
 
@@ -195,7 +195,7 @@ void test_pkstr_lsearch_fn_NULL(void)
 
     TEST_ASSERT_EQUAL(-1, res);
 
-    pkstr str = pkstr_new("Niko & pancakes & Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes & Niko & pancakes");
     res = pkstr_lsearch(str, NULL);
 
     TEST_ASSERT_EQUAL(-1, res);
@@ -209,7 +209,7 @@ void test_pkstr_lsearch_fn_NULL(void)
 
 void test_pkstr_lsearch_fn_empty_literal(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes & Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes & Niko & pancakes");
 
     size_t res = pkstr_lsearch(str, "");
 
@@ -220,7 +220,7 @@ void test_pkstr_lsearch_fn_empty_literal(void)
 
 void test_pkstr_lsearch_fn_basic_not_found(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes & Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes & Niko & pancakes");
 
     size_t res = pkstr_lsearch(str, "stroby");
 
@@ -231,7 +231,7 @@ void test_pkstr_lsearch_fn_basic_not_found(void)
 
 void test_pkstr_rsearch_fn_basic(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes & Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes & Niko & pancakes");
 
     size_t res = pkstr_rsearch(str, "& pancakes");
 
@@ -246,7 +246,7 @@ void test_pkstr_rsearch_fn_NULL(void)
 
     TEST_ASSERT_EQUAL(-1, res);
 
-    pkstr str = pkstr_new("Niko & pancakes & Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes & Niko & pancakes");
     res = pkstr_rsearch(str, NULL);
 
     TEST_ASSERT_EQUAL(-1, res);
@@ -260,7 +260,7 @@ void test_pkstr_rsearch_fn_NULL(void)
 
 void test_pkstr_rsearch_fn_empty_literal(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes & Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes & Niko & pancakes");
 
     size_t res = pkstr_rsearch(str, "");
 
@@ -271,7 +271,7 @@ void test_pkstr_rsearch_fn_empty_literal(void)
 
 void test_pkstr_rsearch_fn_basic_not_found(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes & Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes & Niko & pancakes");
 
     size_t res = pkstr_rsearch(str, "stroby");
 

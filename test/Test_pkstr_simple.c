@@ -12,7 +12,7 @@
 
 void test_pkstr_len_fn_basic(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
 
     size_t len = pkstr_len(str);
 
@@ -30,8 +30,8 @@ void test_pkstr_len_fn_NULL(void)
 
 void test_pkstr_cat_fn_basic(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
-    pkstr str1 = pkstr_new(" & stroby");
+    pkstr_t str = pkstr_new("Niko & pancakes");
+    pkstr_t str1 = pkstr_new(" & stroby");
 
     pkstr_cat(&str, str1);
 
@@ -46,7 +46,7 @@ void test_pkstr_cat_fn_NULL(void)
 {
     pkstr_cat(NULL, NULL);
 
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
     pkstr_cat(&str, NULL);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
@@ -59,8 +59,8 @@ void test_pkstr_cat_fn_NULL(void)
 
 void test_pkstr_cat_fn_realloc(void)
 {
-    pkstr str = pkstr_new("Niko");
-    pkstr str1 = pkstr_new(" & pancakes & stroby");
+    pkstr_t str = pkstr_new("Niko");
+    pkstr_t str1 = pkstr_new(" & pancakes & stroby");
 
     pkstr_cat(&str, str1);
 
@@ -73,7 +73,7 @@ void test_pkstr_cat_fn_realloc(void)
 
 void test_pkstr_ncat_fn_basic(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
 
     pkstr_ncat(&str, " & stroby & pancakes", 9);
 
@@ -88,7 +88,7 @@ void test_pkstr_ncat_fn_NULL(void)
     pkstr_ncat(NULL, NULL, 0);
     pkstr_ncat(NULL, NULL, 1);
 
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
     pkstr_ncat(&str, NULL, 1);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
@@ -101,7 +101,7 @@ void test_pkstr_ncat_fn_NULL(void)
 
 void test_pkstr_ncat_fn_realloc(void)
 {
-    pkstr str = pkstr_new("Niko");
+    pkstr_t str = pkstr_new("Niko");
     pkstr_ncat(&str, " & pancakes & stroby", 11);
     pkstr_ncat(&str, " & pancakes & stroby", 11);
 
@@ -113,8 +113,8 @@ void test_pkstr_ncat_fn_realloc(void)
 
 void test_pkstr_insert_fn_basic(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
-    pkstr str1 = pkstr_new(" & stroby");
+    pkstr_t str = pkstr_new("Niko & pancakes");
+    pkstr_t str1 = pkstr_new(" & stroby");
 
     pkstr_insert(&str, str1, 4);
 
@@ -129,7 +129,7 @@ void test_pkstr_insert_fn_NULL(void)
 {
     pkstr_insert(NULL, NULL, 0);
 
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
     pkstr_insert(&str, NULL, 0);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
@@ -142,8 +142,8 @@ void test_pkstr_insert_fn_NULL(void)
 
 void test_pkstr_insert_fn_larger_index(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
-    pkstr str1 = pkstr_new(" & stroby");
+    pkstr_t str = pkstr_new("Niko & pancakes");
+    pkstr_t str1 = pkstr_new(" & stroby");
 
     pkstr_insert(&str, str1, 727);
 
@@ -156,8 +156,8 @@ void test_pkstr_insert_fn_larger_index(void)
 
 void test_pkstr_insert_fn_realloc(void)
 {
-    pkstr str = pkstr_new("Niko");
-    pkstr str1 = pkstr_new(" & pancakes & stroby");
+    pkstr_t str = pkstr_new("Niko");
+    pkstr_t str1 = pkstr_new(" & pancakes & stroby");
 
     pkstr_insert(&str, str1, 4);
 
@@ -170,8 +170,8 @@ void test_pkstr_insert_fn_realloc(void)
 
 void test_pkstr_trim_start_fn_basic(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
-    pkstr str1 = pkstr_new("Nik");
+    pkstr_t str = pkstr_new("Niko & pancakes");
+    pkstr_t str1 = pkstr_new("Nik");
 
     pkstr_trim_start(str, str1);
 
@@ -195,7 +195,7 @@ void test_pkstr_trim_start_fn_NULL(void)
 {
     pkstr_trim_start(NULL, NULL);
 
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
     pkstr_trim_start(str, NULL);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
@@ -208,8 +208,8 @@ void test_pkstr_trim_start_fn_NULL(void)
 
 void test_pkstr_trim_start_fn_no_trim(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
-    pkstr str1 = pkstr_new("xyz");
+    pkstr_t str = pkstr_new("Niko & pancakes");
+    pkstr_t str1 = pkstr_new("xyz");
 
     pkstr_trim_start(str, str1);
 
@@ -223,8 +223,8 @@ void test_pkstr_trim_start_fn_no_trim(void)
 
 void test_pkstr_trim_start_fn_all_trim(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
-    pkstr str1 = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
+    pkstr_t str1 = pkstr_new("Niko & pancakes");
 
     pkstr_trim_start(str, str1);
 
@@ -237,7 +237,7 @@ void test_pkstr_trim_start_fn_all_trim(void)
 
 void test_pkstr_trim_end_fn_basic(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
 
     pkstr_trim_end(str, "kes");
 
@@ -260,7 +260,7 @@ void test_pkstr_trim_end_fn_NULL(void)
 {
     pkstr_trim_end(NULL, NULL);
 
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
     pkstr_trim_end(str, NULL);
 
     const struct pkstr_header *header = PKSTR_H_PTR(str);
@@ -273,7 +273,7 @@ void test_pkstr_trim_end_fn_NULL(void)
 
 void test_pkstr_trim_end_fn_all_trim(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
 
     pkstr_trim_end(str, "Niko & pancakes");
 
@@ -285,7 +285,7 @@ void test_pkstr_trim_end_fn_all_trim(void)
 
 void test_pkstr_remove_fn_basic(void)
 {
-    pkstr str = pkstr_new("Niko & stroby & pancakes");
+    pkstr_t str = pkstr_new("Niko & stroby & pancakes");
 
     pkstr_remove(str, 5, 14);
 
@@ -299,7 +299,7 @@ void test_pkstr_remove_fn_NULL(void)
 {
     pkstr_remove(NULL, 0, 0);
 
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
     
     pkstr_remove(str, 0, 0);
 
@@ -313,7 +313,7 @@ void test_pkstr_remove_fn_NULL(void)
 
 void test_pkstr_remove_fn_start_greater_than_length(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
 
     pkstr_remove(str, 727, 727);
 
@@ -325,7 +325,7 @@ void test_pkstr_remove_fn_start_greater_than_length(void)
 
 void test_pkstr_remove_fn_end_greater_than_length(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
 
     pkstr_remove(str, 0, 727);
 
@@ -337,7 +337,7 @@ void test_pkstr_remove_fn_end_greater_than_length(void)
 
 void test_pkstr_remove_fn_start_greater_than_end(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes");
+    pkstr_t str = pkstr_new("Niko & pancakes");
 
     pkstr_remove(str, 5, 4);
 
@@ -349,7 +349,7 @@ void test_pkstr_remove_fn_start_greater_than_end(void)
 
 void test_pkstr_to_upper_fn_basic(void)
 {
-    pkstr str = pkstr_new("Niko & pancakes{");
+    pkstr_t str = pkstr_new("Niko & pancakes{");
 
     pkstr_to_upper(str);
 
@@ -366,7 +366,7 @@ void test_pkstr_to_upper_fn_NULL(void)
 
 void test_pkstr_to_lower_fn_basic(void)
 {
-    pkstr str = pkstr_new("Niko & PANCAKES");
+    pkstr_t str = pkstr_new("Niko & PANCAKES");
 
     pkstr_to_lower(str);
 
